@@ -1,0 +1,26 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/sizes";
+
+:host {
+  .finance-user-menu {
+    position: fixed;
+    top: $bar-width;
+    right: 0;
+
+    background-color: $grey-1;
+    color: $grey-8;
+
+    .user-menu-info {
+      p {
+        padding: 10px 20px;
+      }
+    }
+
+    nav {
+      a {
+        padding: 10px 20px;
+        border-top: 1px solid $grey-3;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import "sizes";
+
+@mixin button() {
+  min-width: $bar-width;
+  height: $bar-width;
+  padding: 14px;
+
+  font-size: 16px;
+  line-height: $bar-width - 20px;
+  text-transform: uppercase;
+
+  &.icon {
+    width: $bar-width;
+  }
+
+  &.left {
+    float: left;
+  }
+
+  &.right {
+    float: right;
+  }
+}

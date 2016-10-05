@@ -1,0 +1,21 @@
+<div class="finance-login-form" *ngIf="!state.isAuthorized">
+
+    <div class="wrapper" *ngIf="isLoaded">
+        <form (ngSubmit)="onSubmit()">
+            <label>
+                <span>email:</span>
+                <input required type="email" [(ngModel)]="data.email" name="email"/>
+            </label>
+            <label>
+                <span>password:</span>
+                <input required type="password" [(ngModel)]="data.pwd" name="pwd"/>
+            </label>
+            <input type="submit"/>
+        </form>
+    </div>
+
+    <div class="floating-message" *ngIf="!isLoaded">
+        Loading...
+    </div>
+
+</div>

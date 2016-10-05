@@ -1,0 +1,16 @@
+<div class="finance-main-menu" *ngIf="state.isMenuOpen">
+    <div class="wrapper">
+
+        <div class="header">
+            <div class="button icon left" [ico]="'x'" (click)="state.isMenuOpen = !state.isMenuOpen"></div>
+        </div>
+
+        <div class="coffers">
+            <div *ngFor="let coffer of database.coffers" class="coffer">
+                <strong>{{coffer.title}}</strong>
+                <div>{{coffer.amount}}</div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,39 @@
+$grey-1: #f5f5f5;
+$grey-2: #eeeeee;
+$grey-3: #e0e0e0;
+$grey-8: #424242;
+$grey-9: #333333;
+
+$blue-dark: #142B42;
+$blue-grey: #72808E;
+$blue-green: #00BEB7;
+$orange: #F2B51A;
+
+@mixin gradient($from, $to) {
+  background: $from;
+  background: -moz-linear-gradient(top, $from 0%, $to 100%);
+  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+  background: linear-gradient(to bottom, $from 0%, $to 100%);
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+@mixin blur($amount) {
+  -webkit-filter: blur($amount);
+  -moz-filter: blur($amount);
+  -o-filter: blur($amount);
+  -ms-filter: blur($amount);
+  filter: blur($amount);
+}

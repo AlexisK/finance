@@ -1,0 +1,8 @@
+<stuccu-ico-prefetch></stuccu-ico-prefetch>
+<div class="main_container app stuccu-app">
+    <div class="main-content" [class.blurred]="!state.isAuthorized">
+        <finance-navbar></finance-navbar>
+        <router-outlet></router-outlet>
+    </div>
+    <finance-login-form></finance-login-form>
+</div>

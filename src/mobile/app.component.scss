@@ -1,0 +1,50 @@
+@import "../styles/colors";
+
+// global basis
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div, input, select, textarea, a {
+  display: block;
+  box-sizing: border-box;
+}
+
+input, select, textarea, button {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+// font
+body, input, textarea, select {
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+}
+
+// layout basis
+html, body, .main-content, .main_container, finance-app {
+  display: block;
+  height: 100%;
+}
+
+body {
+  background-color: $grey-8;
+}
+
+// specific rules
+.hidden {
+  display: none;
+}
+
+svg.ico {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.main-content.blurred {
+  @include blur(5px);
+}

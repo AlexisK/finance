@@ -1,0 +1,32 @@
+$bar-width: 50px;
+
+@mixin vertical-align() {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin vertical-align-safe-parent() {
+  &:before {
+    content: '\200B';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+@mixin vertical-align-safe-child() {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin clearfix() {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}

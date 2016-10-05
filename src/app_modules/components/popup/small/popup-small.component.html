@@ -1,0 +1,11 @@
+<div class="stuccu-popup-small" *ngIf="shown" (click)="bgClick()">
+    <div class="popup-block" (click)="blockClick()">
+        <div *ngIf="title" class="title">
+            <span>{{title}}</span>
+            <button [ico]="'x'" (click)="hide()"></button>
+        </div>
+        <div class="content">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

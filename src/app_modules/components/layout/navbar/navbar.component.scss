@@ -1,0 +1,24 @@
+@import "../../../../styles/sizes";
+@import "../../../../styles/colors";
+@import "../../../../styles/button";
+
+:host {
+  height: $bar-width;
+
+  .finance-navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: $bar-width;
+    background-color: $grey-9;
+
+    .button {
+      @include button();
+
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+}

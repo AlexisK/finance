@@ -1,0 +1,16 @@
+$animation-fast: .15s;
+$animation-normal: .25s;
+$animation-long: .4s;
+
+
+@mixin animate-fast($attr) {
+  transition: $attr $animation-fast ease-out;
+}
+
+@mixin animate-normal($attr) {
+  transition: $attr $animation-normal ease-out;
+}
+
+@mixin animate-long($attr) {
+  transition: $attr $animation-long ease-out;
+}

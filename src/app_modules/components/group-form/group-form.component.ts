@@ -33,6 +33,7 @@ const icons = [
 })
 
 export class GroupFormComponent {
+    private currentGroup: any = null;
     private data = {
         title       : '',
         icon        : icons[0],
@@ -46,7 +47,7 @@ export class GroupFormComponent {
     }
 
     onSubmit() {
-        let oid     = firebase.database().ref().child('group').push().key;
+        let oid     = (this.currentGroup && this.currentGroup.id) || firebase.database().ref().child('group').push().key;
         let updates = {};
 
         updates['/group/' + oid] = Object.assign({}, this.data);
@@ -55,8 +56,28 @@ export class GroupFormComponent {
             .catch((err: any) => console.log(err))
             .then((data: any) => {
                 this.data.title = '';
-                // this.state.isGroupMenuOpen = false;
-                console.log(data);
+                if ( this.currentGroup ) {
+                    this.currentGroup = null;
+                    this.state.isGroupMenuOpen = false;
+                }
             });
+    }
+
+    onDelete() {
+        if ( this.currentGroup ) {
+            if ( confirm('Are you sure want to delete?') ) {
+                let updates = {};
+                updates['/group/' + this.currentGroup.id] = null;
+                firebase.database().ref().update(updates);
+            }
+        }
+    }
+
+    edit(group: any) {
+        this.currentGroup = group;
+        Object.keys(this.data).forEach((k: string) => {
+            this.data[k] = group[k];
+        });
+        this.state.isGroupMenuOpen = true;
     }
 }

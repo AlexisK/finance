@@ -1,8 +1,12 @@
 <div class="finance-group-form" *ngIf="state.isGroupMenuOpen">
-    <form (ngSubmit)="onSubmit()">
+    <form class="clearfix" (ngSubmit)="onSubmit()">
+        <div *ngIf="currentGroup">
+            <input type="button" value="Editing {{currentGroup.id}}" (click)="currentGroup = null;" />
+        </div>
         <label>
             <span>title</span>
-            <input type="text" [style.backgroundColor]="data.color" placeholder="Food" [(ngModel)]="data.title" name="title"/>
+            <input type="text" [style.backgroundColor]="data.color" placeholder="Food" [(ngModel)]="data.title"
+                   name="title"/>
         </label>
         <label>
             <span>icon</span>
@@ -20,6 +24,12 @@
             <span>Description</span>
             <textarea placeholder="..." [(ngModel)]="data.description" name="description"></textarea>
         </label>
-        <input type="submit"/>
+        <div *ngIf="!currentGroup">
+            <input type="submit" value="Create"/>
+        </div>
+        <div *ngIf="currentGroup">
+            <input class="w-3" type="submit" value="Update"/>
+            <input class="w-1" type="button" value="Delete" (click)="onDelete()"/>
+        </div>
     </form>
 </div>

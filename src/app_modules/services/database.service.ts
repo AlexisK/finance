@@ -50,23 +50,23 @@ export class DatabaseService {
     }
 
     subscribeFirebase() {
-        this.subscribeModel('currency', (v: any, k: string) => new CurrencyModel(k, v.title, v.warningLimit));
-        this.subscribeModel('group', (v: any, k: string) => new GroupModel(k, v.title, v.description, v.icon, v.color));
-        this.subscribeModel('transaction', (v: any, k: string) => new TransactionModel(k, v));
+        this.subscribeModel('currency', CurrencyModel);
+        this.subscribeModel('group', GroupModel);
+        this.subscribeModel('transaction', TransactionModel);
     }
 
-    private elementWorker(model: string, builder: Function, key: string, data: any) {
+    private elementWorker(model: string, innerModel: any, key: string, data: any) {
         this.ngZone.run(() => {
-            console.log('elementWorker', model, this.storage[model][key] = builder(data, key));
+            console.log('elementWorker', model, this.storage[model][key] = new innerModel(key, data));
         });
     }
 
-    private subscribeModel(model: string, builder: Function) {
+    private subscribeModel(model: string, innerModel: any) {
         let ref             = firebase.database().ref(model);
         this.storage[model] = {};
 
-        ref.on('child_added', (data: any) => this.elementWorker(model, builder, data.key, data.val()));
-        ref.on('child_changed', (data: any) => this.elementWorker(model, builder, data.key, data.val()));
+        ref.on('child_added', (data: any) => this.elementWorker(model, innerModel, data.key, data.val()));
+        ref.on('child_changed', (data: any) => this.elementWorker(model, innerModel, data.key, data.val()));
         ref.on('child_removed', (data: any) => {
             if (this.storage[model] && this.storage[model][data.key]) {
                 delete this.storage[model][data.key];

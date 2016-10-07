@@ -1,14 +1,14 @@
 export class CurrencyModel {
     constructor(public id: string,
-                public title: string,
-                public warningLimit = 0) {
+                public data: any) {
+        Object.assign(this, data);
     }
 
     getColorClass(amount: number) {
         if ( amount > 0 ) {
             return 'positive';
         }
-        if ( amount < this.warningLimit ) {
+        if ( amount < this['warningLimit']) {
             return 'negative';
         }
         return '';

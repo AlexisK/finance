@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
 
+import {GroupFormComponent} from 'components';
 import {StateService, DatabaseService} from 'services';
 
 @Component({
@@ -8,9 +9,15 @@ import {StateService, DatabaseService} from 'services';
     styleUrls   : ['./groups.component.scss']
 })
 
-export class GroupsPageComponent {
+export class GroupsPageComponent implements AfterViewInit {
+    @ViewChild(GroupFormComponent) formComponent: any;
+
     constructor(private state: StateService,
-                private database: DatabaseService) {
+                private db: DatabaseService) {
+    }
+
+    ngAfterViewInit() {
+
     }
 }
 

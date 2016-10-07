@@ -1,6 +1,10 @@
 <div class="finance-groups">
 
-    <div class="asLink" (click)="state.isGroupMenuOpen = !state.isGroupMenuOpen">new Group</div>
+    <div *ngIf="formComponent">
+        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [form]="formComponent"></finance-group-widget>
+    </div>
+
     <finance-group-form></finance-group-form>
+    <div class="asLink" (click)="state.isGroupMenuOpen = !state.isGroupMenuOpen">+ new Group</div>
 
 </div>

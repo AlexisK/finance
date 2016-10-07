@@ -5,21 +5,30 @@
   background-color: $grey-8;
   color: #fff;
 
+  form {
+    width: 100%;
+  }
+
   label {
     display: block;
     width: 100%;
-    float: left;
 
+  }
+  label, input {
     &.w-1 {
+      float: left;
       width: 25%;
     }
     &.w-2 {
+      float: left;
       width: 50%;
     }
     &.w-3 {
+      float: left;
       width: 75%;
     }
     &.w-4 {
+      float: left;
       width: 100%;
     }
   }

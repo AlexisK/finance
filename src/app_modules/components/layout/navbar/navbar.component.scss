@@ -12,6 +12,7 @@
     left: 0;
     height: $bar-width;
     background-color: $grey-9;
+    z-index: 200;
 
     .button {
       @include button();

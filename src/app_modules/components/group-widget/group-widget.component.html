@@ -1,0 +1,14 @@
+<div class="finance-group-widget">
+    <div class="info"
+         [class.isOpened]="isOpened"
+         (click)="group.description && (isOpened = !isOpened)">
+        <div *ngIf="form" class="edit" [ico]="'edit'"
+        (click)="form.edit(group)"></div>
+        <div class="title">{{group.title}}</div>
+        <div class="group" [ico]="group.icon"
+             [style.backgroundColor]="group.color"></div>
+    </div>
+    <div class="content" *ngIf="isOpened"
+         [style.backgroundColor]="group.color">{{group.description}}
+    </div>
+</div>

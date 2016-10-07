@@ -1,0 +1,10 @@
+@import "../../../styles/colors";
+@import "../../../styles/widget";
+
+:host {
+  display: block;
+
+  .finance-group-widget {
+    @include widget();
+  }
+}

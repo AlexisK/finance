@@ -71,7 +71,18 @@ module.exports = function makeWebpackConfig() {
      * This handles most of the magic responsible for converting modules
      */
     config.module = {
-        preLoaders  : isTest ? [] : [{test : /\.ts$/, loader : 'tslint'}],
+        preLoaders  : isTest ? [] : [
+            {test : /\.ts$/, loader : 'tslint'},
+            {
+                test: /.ts$/,
+                loader: 'string-replace-loader',
+                query: {
+                    search: 'moduleId: module.id,',
+                    replace: '',
+                    flags: 'g'
+                }
+            }
+        ],
         loaders     : [
             // Support for .ts files.
             {
@@ -91,11 +102,11 @@ module.exports = function makeWebpackConfig() {
             // all css in src/style will be bundled in an external css file
             {
                 test    : /\.css$/,
-                exclude : root('src', 'app'),
-                loader  : isTest ? 'null' : ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
+                exclude : root('src', 'mobile'),
+                loader  : isTest ? 'null' : 'raw!postcss'
             },
             // all css required in src/app files will be merged in js files
-            {test : /\.css$/, include : root('src', 'app'), loader : 'raw!postcss'},
+            {test : /\.css$/, include : root('src', 'mobile'), loader : 'raw!postcss'},
 
             // support for .scss files
             // use 'null' loader in test mode (https://github.com/webpack/null-loader)

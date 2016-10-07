@@ -1,4 +1,5 @@
 @import "../styles/colors";
+@import "../styles/sizes";
 
 // global basis
 * {
@@ -22,7 +23,7 @@ a {
 // font
 body, input, textarea, select {
   font-family: 'Lato', sans-serif;
-  color: #fff;
+  color: #000;
 }
 
 // layout basis
@@ -32,7 +33,7 @@ html, body, .main-content, .main_container, finance-app {
 }
 
 body {
-  background-color: $grey-8;
+  background-color: $grey-2;
 }
 
 // specific rules
@@ -45,6 +46,10 @@ svg.ico {
   max-height: 100%;
 }
 
-.main-content.blurred {
-  @include blur(5px);
+.main-content {
+  padding-top: $bar-width;
+
+  &.blurred {
+    @include blur(10px);
+  }
 }

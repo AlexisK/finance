@@ -1,0 +1,37 @@
+<div class="finance-transaction-form" *ngIf="state.isTransactionMenuOpen">
+    <form (ngSubmit)="onSubmit()">
+        <label class="w-1">
+            <span>Amount</span>
+            <input type="number" class="text-right" placeholder="0.00" [(ngModel)]="data.amount" name="amount"/>
+        </label>
+        <label class="w-1">
+            <span>Curr.</span>
+            <select [(ngModel)]="data.currency" name="currency">
+                <option *ngFor="let currency of db.currencies" [value]="currency.id">{{currency.title}}</option>
+            </select>
+        </label>
+        <label class="w-2">
+            <span>Type</span>
+            <select [(ngModel)]="data.group" name="group">
+                <option *ngFor="let group of db.groups" [value]="group.id">{{group.title}}</option>
+            </select>
+        </label>
+        <label>
+            <span>Title</span>
+            <input type="text" required placeholder="Dinner" [(ngModel)]="data.title" name="title" />
+        </label>
+        <label class="w-2">
+            <span>Date</span>
+            <input type="date" [(ngModel)]="data.date" name="date" />
+        </label>
+        <label class="w-2">
+            <span>Time</span>
+            <input type="time" [(ngModel)]="data.time" name="time" />
+        </label>
+        <label>
+            <span>Description</span>
+            <textarea placeholder="..." [(ngModel)]="data.description" name="description"></textarea>
+        </label>
+        <input type="submit"/>
+    </form>
+</div>

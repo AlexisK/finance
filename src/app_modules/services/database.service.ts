@@ -1,10 +1,10 @@
 import {Injectable, NgZone} from '@angular/core';
 
 import {FirebaseService, firebase} from 'services';
-import {CofferModel, TransactionGroupModel, TransactionModel} from 'models';
+import {CurrencyModel, GroupModel, TransactionModel} from 'models';
 
 interface Storage {
-    coffer: any;
+    currency: any;
     transaction: any;
 }
 
@@ -17,42 +17,47 @@ export class DatabaseService {
         this.subscribeFirebase();
     }
 
-    get coffers() {
+    get calculatedCurrencies() {
         let result: any[] = [];
 
-        Object.keys(this.storage.coffer).forEach((key: string) => {
+        Object.keys(this.storage.currency).forEach((key: string) => {
             let amount = 0;
             Object.keys(this.storage.transaction).forEach((id: string) => {
                 let transaction = this.storage.transaction[id];
 
-                if (transaction.coffer === key) {
+                if (transaction.currency === key) {
                     amount += transaction.amount;
                 }
             });
             result.push({
-                title : key,
+                title : this.storage.currency[key].title,
                 amount
             });
         });
         return result;
     }
 
+    get currencies() {
+        return Object.keys(this.storage.currency).map(k => this.storage.currency[k]);
+    }
+
+    get groups() {
+        return Object.keys(this.storage['group']).map(k => this.storage['group'][k]);
+    }
+
+    get transactions() {
+        return Object.keys(this.storage['transaction']).map(k => this.storage['transaction'][k]);
+    }
+
     subscribeFirebase() {
-        this.subscribeModel('coffer', (v: number, k: string) => new CofferModel(k, v));
-        this.subscribeModel('transaction-group', (v: any, k: string) => new TransactionGroupModel(k, v.description));
-        this.subscribeModel('transaction', (v: any, k: string) => new TransactionModel(
-            k,
-            v.group,
-            v.author,
-            v.coffer,
-            v.amount,
-            v.description
-        ));
+        this.subscribeModel('currency', (v: any, k: string) => new CurrencyModel(k, v.title, v.warningLimit));
+        this.subscribeModel('group', (v: any, k: string) => new GroupModel(k, v.title, v.description, v.icon, v.color));
+        this.subscribeModel('transaction', (v: any, k: string) => new TransactionModel(k, v));
     }
 
     private elementWorker(model: string, builder: Function, key: string, data: any) {
         this.ngZone.run(() => {
-            this.storage[model][key] = builder(data, key);
+            console.log('elementWorker', model, this.storage[model][key] = builder(data, key));
         });
     }
 
@@ -62,5 +67,10 @@ export class DatabaseService {
 
         ref.on('child_added', (data: any) => this.elementWorker(model, builder, data.key, data.val()));
         ref.on('child_changed', (data: any) => this.elementWorker(model, builder, data.key, data.val()));
+        ref.on('child_removed', (data: any) => {
+            if (this.storage[model] && this.storage[model][data.key]) {
+                delete this.storage[model][data.key];
+            }
+        });
     }
 }

@@ -4,10 +4,14 @@ import {UserModel} from 'models';
 
 @Injectable()
 export class StateService {
-    public isAuthorized   = false;
-    public isMenuOpen     = false;
-    public isUserMenuOpen = false;
-    public isOnline       = false;
+    public isAuthorizationChecked = false;
+    public isAuthorized           = false;
+    public isMenuOpen             = false;
+    public isUserMenuOpen         = false;
+    public isTransactionMenuOpen  = false;
+    public isCurrencyMenuOpen     = false;
+    public isGroupMenuOpen        = false;
+    public isOnline               = false;
 
     public user: UserModel;
 

@@ -20,6 +20,7 @@ export class IterablePipe implements PipeTransform {
             return value.split('');
         }
         if (typeof(value) === CHECK.object && value.constructor !== Array) {
+            console.log(value, helpers.parseList(value));
             return helpers.parseList(value);
         }
         return value;

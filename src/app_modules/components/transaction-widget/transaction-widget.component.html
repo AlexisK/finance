@@ -1,0 +1,18 @@
+<div class="finance-transaction-widget" *ngIf="transaction">
+    <div class="info" [style.backgroundColor]="db.storage.group[transaction.group].color"
+         (click)="isOpened = !isOpened">
+        <div class="title">
+            <span>{{db.storage.group[transaction.group].title}}</span>
+            <span *ngIf="transaction.title"> : {{transaction.title}}</span>
+            <span class="icon" [ico]="db.storage.group[transaction.group].icon"></span>
+        </div>
+        <div class="money {{db.storage.currency[transaction.currency].getColorClass(transaction.amount)}}">
+            <div class="amount">{{transaction.amount | financeMoney}}</div>
+            <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
+        </div>
+        <div class="time">{{transaction.timestamp | financeDate}}</div>
+    </div>
+    <div class="content" *ngIf="transaction.description && isOpened">
+        <div class="description">{{transaction.description}}</div>
+    </div>
+</div>

@@ -1,1 +1,4 @@
-<h1>Dashboard</h1>
+<div class="wrapper">
+    <finance-transaction-widget *ngFor="let transaction of db.transactions"
+                                [transaction]="transaction"></finance-transaction-widget>
+</div>

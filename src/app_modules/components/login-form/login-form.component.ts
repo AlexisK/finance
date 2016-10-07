@@ -1,4 +1,4 @@
-import {Component, AfterViewInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {AuthService, StateService} from 'services';
 
@@ -8,8 +8,9 @@ import {AuthService, StateService} from 'services';
     styleUrls   : ['./login-form.component.scss']
 })
 
-export class LoginFormComponent implements AfterViewInit {
-    private isLoaded = false;
+export class LoginFormComponent {
+    private _authTimeout: any = null;
+    private isAuthFailed = false;
     private data = {
         email : '',
         pwd   : ''
@@ -19,13 +20,15 @@ export class LoginFormComponent implements AfterViewInit {
                 private state: StateService) {
     }
 
-    ngAfterViewInit() {
-        setTimeout(() => this.isLoaded = true, 1000);
-    }
-
     onSubmit() {
         this.auth.login(this.data.email, this.data.pwd)
-            .catch(err => {})
+            .catch(err => {
+                this.isAuthFailed = true;
+                clearInterval(this._authTimeout);
+                this._authTimeout = setTimeout(() => {
+                    this.isAuthFailed = false;
+                }, 1000);
+            })
             .then(user => {});
     }
 }

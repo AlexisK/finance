@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {StateService, AuthService} from 'services';
+import {StateService} from 'services';
 
 import {MainMenuComponent} from './main-menu';
 import {UserMenuComponent} from './user-menu';

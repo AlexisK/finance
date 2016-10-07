@@ -1,0 +1,25 @@
+<div class="finance-group-form" *ngIf="state.isGroupMenuOpen">
+    <form (ngSubmit)="onSubmit()">
+        <label>
+            <span>title</span>
+            <input type="text" [style.backgroundColor]="data.color" placeholder="Food" [(ngModel)]="data.title" name="title"/>
+        </label>
+        <label>
+            <span>icon</span>
+            <span class="preview" [style.backgroundColor]="data.color" [ico]="data.icon"></span>
+            <select [(ngModel)]="data.icon" name="icon">
+                <option *ngFor="let icon of icons" [value]="icon">{{icon}}</option>
+            </select>
+        </label>
+        <label>
+            <span>color</span>
+            <span class="preview" [style.backgroundColor]="data.color">42</span>
+            <input type="color" placeholder="#ffffff" [(ngModel)]="data.color" name="color"/>
+        </label>
+        <label>
+            <span>Description</span>
+            <textarea placeholder="..." [(ngModel)]="data.description" name="description"></textarea>
+        </label>
+        <input type="submit"/>
+    </form>
+</div>

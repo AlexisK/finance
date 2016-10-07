@@ -1,20 +1,20 @@
 <div class="finance-login-form" *ngIf="!state.isAuthorized">
 
-    <div class="wrapper" *ngIf="isLoaded">
+    <div class="wrapper" *ngIf="state.isAuthorizationChecked">
         <form (ngSubmit)="onSubmit()">
             <label>
                 <span>email:</span>
-                <input required type="email" [(ngModel)]="data.email" name="email"/>
+                <input [class.invalid]="isAuthFailed" required type="email" [(ngModel)]="data.email" name="email"/>
             </label>
             <label>
                 <span>password:</span>
-                <input required type="password" [(ngModel)]="data.pwd" name="pwd"/>
+                <input [class.invalid]="isAuthFailed" required type="password" [(ngModel)]="data.pwd" name="pwd"/>
             </label>
             <input type="submit"/>
         </form>
     </div>
 
-    <div class="floating-message" *ngIf="!isLoaded">
+    <div class="floating-message" *ngIf="!state.isAuthorizationChecked">
         Loading...
     </div>
 

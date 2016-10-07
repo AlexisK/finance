@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 
+import {DatabaseService} from 'services';
+
 @Component({
     selector    : 'finance-page-dashboard',
     templateUrl : './dashboard.component.html',
@@ -7,7 +9,7 @@ import {Component} from '@angular/core';
 })
 
 export class DashboardPageComponent {
-
+    constructor(private db: DatabaseService) {}
 }
 
 export const route = {path : '', component : DashboardPageComponent};

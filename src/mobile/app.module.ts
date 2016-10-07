@@ -52,7 +52,7 @@ import * as components from 'components';
         DatabaseService
     ],
     declarations : [AppComponent]
-    // Directives
+        // Directives
         .concat(helpers.parseList(directives))
         // Components
         .concat(helpers.parseList(components))

@@ -5,11 +5,18 @@
 :host {
   .finance-main-menu {
     position: fixed;
-    top: 0; right: 0; bottom: 0; left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 300;
 
     .wrapper {
       position: absolute;
-      top: 0; right: $bar-width; bottom: 0; left: 0;
+      top: 0;
+      right: $bar-width;
+      bottom: 0;
+      left: 0;
       max-width: 400px;
       background-color: $grey-1;
       color: $grey-8;
@@ -25,6 +32,39 @@
             fill: $grey-8;
           }
         }
+      }
+
+      .container {
+        position: absolute;
+        top: $bar-width;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+
+        .currencies {
+          padding: 2px 0 0 2px;
+
+          & > div {
+            display: inline-block;
+            margin: 0 1px 1px 0;
+            padding: 20px;
+            background-color: $grey-8;
+            color: $grey-1;
+
+            & > * {
+              display: inline-block;
+            }
+          }
+        }
+
+        .navigation a,
+        .menus .asLink {
+          padding: 10px 20px;
+          border-bottom: 1px solid $grey-3;
+          color: $grey-8;
+        }
+
       }
     }
   }

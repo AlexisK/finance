@@ -5,11 +5,33 @@
             <div class="button icon left" [ico]="'x'" (click)="state.isMenuOpen = !state.isMenuOpen"></div>
         </div>
 
-        <div class="coffers">
-            <div *ngFor="let coffer of database.coffers" class="coffer">
-                <strong>{{coffer.title}}</strong>
-                <div>{{coffer.amount}}</div>
+        <div class="container">
+
+            <div class="currencies">
+                <div *ngFor="let currency of database.calculatedCurrencies" class="coffer">
+                    <strong>{{currency.title}}</strong>
+                    <div>{{currency.amount}}</div>
+                </div>
             </div>
+
+            <div class="navigation">
+                <nav>
+                    <a href="#">Daily</a>
+                    <a href="#">Monthly</a>
+                    <a href="#">Year</a>
+                    <a href="#">Groups</a>
+                    <a href="#">Currencies</a>
+                </nav>
+            </div>
+
+            <div class="menus">
+                <div class="asLink"></div>
+                <div class="asLink" (click)="state.isGroupMenuOpen = !state.isGroupMenuOpen">+ Group</div>
+                <finance-group-form></finance-group-form>
+                <div class="asLink" (click)="state.isCurrencyMenuOpen = !state.isCurrencyMenuOpen">+ Currency</div>
+                <finance-currency-form></finance-currency-form>
+            </div>
+
         </div>
 
     </div>

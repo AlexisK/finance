@@ -1,0 +1,27 @@
+@import "../../../styles/colors";
+@import "../../../styles/forms";
+
+:host {
+  .finance-group-form {
+    .preview {
+      display: block;
+      box-sizing: border-box;
+      width: 40px;
+      height: 40px;
+      float: left;
+      padding: 10px;
+      background-color: $grey-3;
+      color: $grey-8;
+      svg {
+        fill: $grey-8;
+      }
+
+      & + input,
+      & + select {
+        width: calc(100% - 40px);
+        float: left;
+      }
+    }
+    @include form-pop();
+  }
+}

@@ -9,6 +9,9 @@ $blue-grey: #72808E;
 $blue-green: #00BEB7;
 $orange: #F2B51A;
 
+$green: #44ba05;
+$red: #bc3e0d;
+
 @mixin gradient($from, $to) {
   background: $from;
   background: -moz-linear-gradient(top, $from 0%, $to 100%);

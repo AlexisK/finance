@@ -17,6 +17,7 @@ export class AuthService {
     subscribeChanges() {
         this.auth.onAuthStateChanged(() => {
             this.ngZone.run(() => {
+                this.state.isAuthorizationChecked = true;
                 this.checkLoginStatus();
             });
         });
@@ -27,7 +28,7 @@ export class AuthService {
             this.db.app.auth().signInWithEmailAndPassword(email, pwd)
                 .catch((err: any) => reject(err))
                 .then((user: any) => {
-                    console.log(user);
+
                     if (this.checkLoginStatus()) {
                         resolve(this.state.user);
                     } else {

@@ -3,7 +3,7 @@ import {Component, Input} from '@angular/core';
 import {PopupPrototype} from 'prototypes';
 
 @Component({
-    selector    : 'stuccu-popup-small',
+    selector    : 'finance-popup-small',
     templateUrl : './popup-small.component.html',
     styleUrls   : ['./popup-small.component.scss']
 })

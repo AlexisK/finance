@@ -1,0 +1,7 @@
+@import "../../../styles/forms";
+
+:host {
+  .finance-currency-form {
+    @include form-pop();
+  }
+}

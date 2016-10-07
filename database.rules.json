@@ -1,0 +1,88 @@
+{
+  "rules": {
+    "currency": {
+      "$id": {
+        ".validate": "newData.hasChildren(['title', 'warningLimit'])",
+        "title": {
+          ".validate": "newData.isString()"
+        },
+        "warningLimit": {
+          ".validate": "newData.isNumber()"
+        },
+        "currentAmount": {
+          ".validate": "newData.isNumber()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "group": {
+      "$id": {
+        ".validate": "newData.hasChildren(['title', 'icon', 'color'])",
+        ".indexOn": [
+          "title"
+        ],
+        "title": {
+          ".validate": "newData.isString()"
+        },
+        "description": {
+          ".validate": "newData.isString()"
+        },
+        "icon": {
+          ".validate": "newData.isString()"
+        },
+        "color": {
+          ".validate": "newData.isString()"
+        },
+        "theme": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "transaction": {
+      "$id": {
+        ".validate": "newData.hasChildren(['currency', 'group', 'amount', 'timestamp', 'author'])",
+        ".indexOn": [
+          "timestamp",
+          "currency"
+        ],
+        "group": {
+          ".validate": "newData.isString() && root.child('group/'+newData.val()).exists()"
+        },
+        "currency": {
+          ".validate": "newData.isString() && root.child('currency/'+newData.val()).exists()"
+        },
+        "amount": {
+          ".validate": "newData.isNumber()"
+        },
+        "title": {
+          ".validate": "newData.isString()"
+        },
+        "description": {
+          ".validate": "newData.isString()"
+        },
+        "timestamp": {
+          ".validate": "newData.isNumber()"
+        },
+        "author": {
+          ".validate": "newData.val() === auth.uid"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "$other": {
+      ".validate": false
+    },
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "users": {
+      ".write": false
+    }
+  }
+}

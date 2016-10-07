@@ -15,8 +15,8 @@ export class TransactionFormComponent implements AfterViewInit {
         currency    : '',
         group       : '',
         title       : '',
-        date        : null,
-        time        : null,
+        date        : '',
+        time        : '',
         description : ''
     };
 
@@ -61,11 +61,11 @@ export class TransactionFormComponent implements AfterViewInit {
 
         console.log('onSubmit', updates, JSON.stringify(updates));
         firebase.database().ref().update(updates)
-            .catch(err => console.log(err))
-            .then(data => {
-                this.data.title = '';
+            .catch((err: any) => console.log(err))
+            .then((data: any) => {
+                this.data.title       = '';
                 this.data.description = '';
-                this.data.amount = '';
+                this.data.amount      = '';
                 // this.state.isTransactionMenuOpen = false;
                 console.log(data);
             });

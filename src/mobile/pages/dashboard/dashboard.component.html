@@ -1,4 +1,4 @@
 <div class="wrapper">
-    <finance-transaction-widget *ngFor="let transaction of db.transactions"
+    <finance-transaction-widget *ngFor="let transaction of db.transactions.sort(sortFunc)"
                                 [transaction]="transaction"></finance-transaction-widget>
 </div>

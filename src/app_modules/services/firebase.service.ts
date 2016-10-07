@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {firebaseConfig} from 'config';
 
-export const firebase = require('firebase');
+export const firebase = require('node_modules/firebase');
 
 @Injectable()
 export class FirebaseService {

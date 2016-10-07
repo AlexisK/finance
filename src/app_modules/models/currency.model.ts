@@ -9,8 +9,8 @@ export class CurrencyModel {
             return 'positive';
         }
         if ( amount < this.warningLimit ) {
-            return 'negative-big';
+            return 'negative';
         }
-        return 'negative';
+        return '';
     }
 }

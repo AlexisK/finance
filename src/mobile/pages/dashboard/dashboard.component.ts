@@ -9,6 +9,10 @@ import {DatabaseService} from 'services';
 })
 
 export class DashboardPageComponent {
+    sortFunc(a: any, b: any) {
+        return b.timestamp - a.timestamp;
+    }
+
     constructor(private db: DatabaseService) {}
 }
 

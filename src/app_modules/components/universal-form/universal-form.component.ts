@@ -1,5 +1,7 @@
 import {Component, Input, AfterViewInit} from '@angular/core';
 
+import {firebase} from 'services';
+
 @Component({
     selector    : 'finance-universal-form',
     templateUrl : './universal-form.component.html',
@@ -11,13 +13,17 @@ export class UniversalFormComponent implements AfterViewInit {
     @Input() defaultData: any;
     @Input() model: string;
 
-    private data: any;
+    private data: any = {};
 
     constructor() {
     }
 
     ngAfterViewInit() {
-        Object.keys(this.defaultData).forEach((k: string) => this.data[k] = this.defaultData[k]);
+        if (this.currentRef) {
+            Object.keys(this.defaultData).forEach((k: string) => this.data[k] = this.currentRef[k]);
+        } else {
+            Object.keys(this.defaultData).forEach((k: string) => this.data[k] = this.defaultData[k]);
+        }
     }
 
     onSubmit() {
@@ -32,17 +38,17 @@ export class UniversalFormComponent implements AfterViewInit {
     onDelete() {
         if (this.currentRef) {
             if (confirm('Are you sure want to delete?')) {
-                let updates                             = {};
+                let updates                                     = {};
                 updates[`/${this.model}/${this.currentRef.id}`] = null;
                 firebase.database().ref().update(updates);
             }
         }
     }
 
-    edit(group: any) {
-        this.currentRef = group;
+    edit(entity: any) {
+        this.currentRef = entity;
         Object.keys(this.data).forEach((k: string) => {
-            this.data[k] = group[k];
+            this.data[k] = entity[k];
         });
     }
 

@@ -1,7 +1,7 @@
 <div class="finance-groups">
 
     <div *ngIf="formComponent">
-        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [editWith]="getGroupEditor()"></finance-group-widget>
+        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [editWith]="getEntityEditor()"></finance-group-widget>
     </div>
 
 

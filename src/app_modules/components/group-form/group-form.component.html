@@ -1,33 +1,25 @@
-<div class="finance-group-form" *ngIf="state.isGroupMenuOpen">
-    <h3 *ngIf="currentGroup">Editing {{currentGroup.title}}</h3>
-    <form class="clearfix" (ngSubmit)="onSubmit()">
+<div class="finance-group-form">
+    <finance-universal-form [defaultData]="data" [model]="'group'">
         <label>
             <span>title</span>
-            <input type="text" [style.backgroundColor]="data.color" placeholder="Food" [(ngModel)]="data.title"
+            <input type="text" [style.backgroundColor]="form.data.color" placeholder="Food" [(ngModel)]="form.data.title"
                    name="title"/>
         </label>
         <label>
             <span>icon</span>
-            <span class="preview" [style.backgroundColor]="data.color" [ico]="data.icon"></span>
-            <select [(ngModel)]="data.icon" name="icon">
+            <span class="preview" [style.backgroundColor]="form.data.color" [ico]="form.data.icon"></span>
+            <select [(ngModel)]="form.data.icon" name="icon">
                 <option *ngFor="let icon of icons" [value]="icon">{{icon}}</option>
             </select>
         </label>
         <label>
             <span>color</span>
-            <span class="preview" [style.backgroundColor]="data.color">42</span>
-            <input type="color" placeholder="#ffffff" [(ngModel)]="data.color" name="color"/>
+            <span class="preview" [style.backgroundColor]="form.data.color">42</span>
+            <input type="color" placeholder="#ffffff" [(ngModel)]="form.data.color" name="color"/>
         </label>
         <label>
             <span>Description</span>
-            <textarea placeholder="..." [(ngModel)]="data.description" name="description"></textarea>
+            <textarea placeholder="..." [(ngModel)]="form.data.description" name="description"></textarea>
         </label>
-        <div *ngIf="!currentGroup">
-            <input type="submit" value="Create"/>
-        </div>
-        <div *ngIf="currentGroup">
-            <input class="w-3" type="submit" value="Update"/>
-            <input class="w-1" type="button" value="Delete" (click)="onDelete()"/>
-        </div>
-    </form>
+    </finance-universal-form>
 </div>

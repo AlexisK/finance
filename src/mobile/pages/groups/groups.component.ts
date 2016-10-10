@@ -2,6 +2,7 @@ import {Component, ViewChild, AfterViewInit} from '@angular/core';
 
 import {GroupFormComponent, PopupSmallComponent} from 'components';
 import {StateService, DatabaseService} from 'services';
+import {EntitiesListPrototype} from 'prototypes';
 
 @Component({
     selector    : 'finance-page-groups',
@@ -9,7 +10,7 @@ import {StateService, DatabaseService} from 'services';
     styleUrls   : ['./groups.component.scss']
 })
 
-export class GroupsPageComponent implements AfterViewInit {
+export class GroupsPageComponent extends EntitiesListPrototype implements AfterViewInit {
     private _stateKey = 'isGroupMenuOpen';
     @ViewChild(GroupFormComponent) formComponent: any;
     @ViewChild(PopupSmallComponent) popup: any;
@@ -19,19 +20,7 @@ export class GroupsPageComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.popup.emitter.subscribe((val: boolean) => {
-            if ( !val) {
-                this.formComponent.clear();
-            }
-            this.state[this._stateKey] = val;
-        });
-    }
-
-    getGroupEditor() {
-        return (function(group: any) {
-            this.formComponent.edit(group);
-            this.popup.show();
-        }).bind(this);
+        this._AfterViewInit();
     }
 }
 

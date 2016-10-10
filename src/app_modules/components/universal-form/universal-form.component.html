@@ -1,0 +1,13 @@
+<div class="finance-universal-form">
+    <h3 *ngIf="currentRef">!Editing <span *ngIf="currentRef.title">{{currentRef.title}}</span></h3>
+    <form class="clearfix" (ngSubmit)="onSubmit()">
+        <ng-content></ng-content>
+        <div *ngIf="!currentRef">
+            <input type="submit" value="Create"/>
+        </div>
+        <div *ngIf="currentRef">
+            <input class="w-3" type="submit" value="Update"/>
+            <input class="w-1" type="button" value="Delete" (click)="onDelete()"/>
+        </div>
+    </form>
+</div>

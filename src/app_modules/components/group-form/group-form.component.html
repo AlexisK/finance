@@ -1,8 +1,6 @@
 <div class="finance-group-form" *ngIf="state.isGroupMenuOpen">
+    <h3 *ngIf="currentGroup">Editing {{currentGroup.title}}</h3>
     <form class="clearfix" (ngSubmit)="onSubmit()">
-        <div *ngIf="currentGroup">
-            <input type="button" value="Editing {{currentGroup.id}}" (click)="currentGroup = null;" />
-        </div>
         <label>
             <span>title</span>
             <input type="text" [style.backgroundColor]="data.color" placeholder="Food" [(ngModel)]="data.title"

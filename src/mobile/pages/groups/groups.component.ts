@@ -1,6 +1,6 @@
 import {Component, ViewChild, AfterViewInit} from '@angular/core';
 
-import {GroupFormComponent} from 'components';
+import {GroupFormComponent, PopupSmallComponent} from 'components';
 import {StateService, DatabaseService} from 'services';
 
 @Component({
@@ -10,14 +10,28 @@ import {StateService, DatabaseService} from 'services';
 })
 
 export class GroupsPageComponent implements AfterViewInit {
+    private _stateKey = 'isGroupMenuOpen';
     @ViewChild(GroupFormComponent) formComponent: any;
+    @ViewChild(PopupSmallComponent) popup: any;
 
     constructor(private state: StateService,
                 private db: DatabaseService) {
     }
 
     ngAfterViewInit() {
+        this.popup.emitter.subscribe((val: boolean) => {
+            if ( !val) {
+                this.formComponent.clear();
+            }
+            this.state[this._stateKey] = val;
+        });
+    }
 
+    getGroupEditor() {
+        return (function(group: any) {
+            this.formComponent.edit(group);
+            this.popup.show();
+        }).bind(this);
     }
 }
 

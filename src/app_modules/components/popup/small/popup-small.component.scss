@@ -18,11 +18,10 @@
       max-height: 100%;
       margin: auto 32px;
       background: #fff;
-
-      font-size: 0;
+      overflow: auto;
 
       > .content {
-        max-height: 480px;
+        max-height: 100%;
         overflow: auto;
       }
 

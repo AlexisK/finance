@@ -2,8 +2,8 @@
     <div class="info"
          [class.isOpened]="isOpened"
          (click)="group.description && (isOpened = !isOpened)">
-        <div *ngIf="form" class="edit" [ico]="'edit'"
-        (click)="form.edit(group)"></div>
+        <div *ngIf="editWith" class="edit" [ico]="'edit'"
+        (click)="editWith(group)"></div>
         <div class="title">{{group.title}}</div>
         <div class="group" [ico]="group.icon"
              [style.backgroundColor]="group.color"></div>

@@ -52,15 +52,7 @@ export class GroupFormComponent {
 
         updates['/group/' + oid] = Object.assign({}, this.data);
 
-        firebase.database().ref().update(updates)
-            .catch((err: any) => console.log(err))
-            .then((data: any) => {
-                this.data.title = '';
-                if ( this.currentGroup ) {
-                    this.currentGroup = null;
-                    this.state.isGroupMenuOpen = false;
-                }
-            });
+        firebase.database().ref().update(updates);
     }
 
     onDelete() {
@@ -78,6 +70,10 @@ export class GroupFormComponent {
         Object.keys(this.data).forEach((k: string) => {
             this.data[k] = group[k];
         });
-        this.state.isGroupMenuOpen = true;
+    }
+
+    clear() {
+        this.data.title = '';
+        this.currentGroup = null;
     }
 }

@@ -1,10 +1,13 @@
 <div class="finance-groups">
 
     <div *ngIf="formComponent">
-        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [form]="formComponent"></finance-group-widget>
+        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [editWith]="getGroupEditor()"></finance-group-widget>
     </div>
 
-    <finance-group-form></finance-group-form>
-    <div class="asLink" (click)="state.isGroupMenuOpen = !state.isGroupMenuOpen">+ new Group</div>
+
+    <div class="asLink" (click)="popup.show()">+ new Group</div>
+    <finance-popup-small>
+        <finance-group-form></finance-group-form>
+    </finance-popup-small>
 
 </div>

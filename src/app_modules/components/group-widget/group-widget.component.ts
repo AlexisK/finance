@@ -8,7 +8,7 @@ import {Component, Input} from '@angular/core';
 
 export class GroupWidgetComponent {
     private isOpened = false;
-    @Input() form: any;
+    @Input() editWith: Function;
     @Input() group: any;
 
     constructor() {

@@ -31,6 +31,7 @@ export class AuthService {
 
                     if (this.checkLoginStatus()) {
                         resolve(this.state.user);
+                        window.location.reload();
                     } else {
                         reject(true);
                     }

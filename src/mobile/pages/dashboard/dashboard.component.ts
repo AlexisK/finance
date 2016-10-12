@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
 
 import {PopupSmallComponent, TransactionFormComponent} from 'components';
 import {DatabaseService, StateService} from 'services';
@@ -10,7 +10,7 @@ import {EntitiesListPrototype} from 'prototypes';
     styleUrls   : ['./dashboard.component.scss']
 })
 
-export class DashboardPageComponent extends EntitiesListPrototype {
+export class DashboardPageComponent extends EntitiesListPrototype implements AfterViewInit {
     @ViewChild(TransactionFormComponent) formComponent: any;
     @ViewChild(PopupSmallComponent) popup: any;
 
@@ -21,8 +21,12 @@ export class DashboardPageComponent extends EntitiesListPrototype {
     constructor(state: StateService,
                 private db: DatabaseService) {
         super();
-        this._stateKey = 'isMainMenuOpen';
+        this._stateKey = 'isTransactionMenuOpen';
         this.state     = state;
+    }
+
+    ngAfterViewInit() {
+        this._AfterViewInit();
     }
 }
 

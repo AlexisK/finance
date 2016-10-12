@@ -1,9 +1,9 @@
 <div class="finance-main-menu" *ngIf="state.isMainMenuOpen">
-    <div class="closeArea" (click)="state.isMenuOpen = !state.isMenuOpen"></div>
+    <div class="closeArea" (click)="state.isMainMenuOpen = !state.isMainMenuOpen"></div>
     <div class="wrapper">
 
         <div class="header">
-            <div class="button icon left" [ico]="'x'" (click)="state.isMenuOpen = !state.isMenuOpen"></div>
+            <div class="button icon left" [ico]="'x'" (click)="state.isMainMenuOpen = !state.isMainMenuOpen"></div>
         </div>
 
         <div class="container">

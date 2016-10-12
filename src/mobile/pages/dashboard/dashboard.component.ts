@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
-import {DatabaseService} from 'services';
+import {PopupSmallComponent, TransactionFormComponent} from 'components';
+import {DatabaseService, StateService} from 'services';
+import {EntitiesListPrototype} from 'prototypes';
 
 @Component({
     selector    : 'finance-page-dashboard',
@@ -8,12 +10,20 @@ import {DatabaseService} from 'services';
     styleUrls   : ['./dashboard.component.scss']
 })
 
-export class DashboardPageComponent {
+export class DashboardPageComponent extends EntitiesListPrototype {
+    @ViewChild(TransactionFormComponent) formComponent: any;
+    @ViewChild(PopupSmallComponent) popup: any;
+
     sortFunc(a: any, b: any) {
         return b.timestamp - a.timestamp;
     }
 
-    constructor(private db: DatabaseService) {}
+    constructor(state: StateService,
+                private db: DatabaseService) {
+        super();
+        this._stateKey = 'isMainMenuOpen';
+        this.state     = state;
+    }
 }
 
 export const route = {path : '', component : DashboardPageComponent};

@@ -11,12 +11,14 @@ import {EntitiesListPrototype} from 'prototypes';
 })
 
 export class GroupsPageComponent extends EntitiesListPrototype implements AfterViewInit {
-    private _stateKey = 'isGroupMenuOpen';
     @ViewChild(GroupFormComponent) formComponent: any;
     @ViewChild(PopupSmallComponent) popup: any;
 
-    constructor(private state: StateService,
+    constructor(state: StateService,
                 private db: DatabaseService) {
+        super();
+        this._stateKey = 'isGroupMenuOpen';
+        this.state = state;
     }
 
     ngAfterViewInit() {

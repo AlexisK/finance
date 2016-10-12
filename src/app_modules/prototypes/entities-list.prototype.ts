@@ -1,8 +1,8 @@
 import {StateService} from 'services';
 
 export class EntitiesListPrototype {
-    private state: StateService;
-    private _stateKey: string;
+    protected state: StateService;
+    protected _stateKey: string;
     public formComponent: any;
     public popup: any;
 

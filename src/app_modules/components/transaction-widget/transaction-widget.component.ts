@@ -11,6 +11,7 @@ import {DatabaseService} from 'services';
 export class TransactionWidgetComponent {
     private isOpened = false;
     @Input() transaction: any;
+    @Input() editWith: Function;
 
     constructor(private db: DatabaseService) {
     }

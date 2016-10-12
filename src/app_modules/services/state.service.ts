@@ -6,7 +6,7 @@ import {UserModel} from 'models';
 export class StateService {
     public isAuthorizationChecked = false;
     public isAuthorized           = false;
-    public isMenuOpen             = false;
+    public isMainMenuOpen         = false;
     public isUserMenuOpen         = false;
     public isTransactionMenuOpen  = false;
     public isCurrencyMenuOpen     = false;

@@ -1,4 +1,4 @@
-<div class="finance-main-menu" *ngIf="state.isMenuOpen">
+<div class="finance-main-menu" *ngIf="state.isMainMenuOpen">
     <div class="closeArea" (click)="state.isMenuOpen = !state.isMenuOpen"></div>
     <div class="wrapper">
 
@@ -17,11 +17,11 @@
 
             <div class="navigation">
                 <nav>
-                    <a [routerLink]="'/'" (click)="state.isMenuOpen = false">Dashboard</a>
+                    <a [routerLink]="'/'" (click)="state.isMainMenuOpen = false">Dashboard</a>
                     <a href="#">Daily</a>
                     <a href="#">Monthly</a>
                     <a href="#">Year</a>
-                    <a [routerLink]="'/groups/'" (click)="state.isMenuOpen = false">Groups</a>
+                    <a [routerLink]="'/groups/'" (click)="state.isMainMenuOpen = false">Groups</a>
                     <a href="#">Currencies</a>
                 </nav>
             </div>

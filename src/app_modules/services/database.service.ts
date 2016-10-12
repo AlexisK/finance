@@ -57,7 +57,8 @@ export class DatabaseService {
 
     private elementWorker(model: string, innerModel: any, key: string, data: any) {
         this.ngZone.run(() => {
-            console.log('elementWorker', model, this.storage[model][key] = new innerModel(key, data));
+            // console.log('elementWorker', model, this.storage[model][key] = new innerModel(key, data));
+            this.storage[model][key] = new innerModel(key, data);
         });
     }
 

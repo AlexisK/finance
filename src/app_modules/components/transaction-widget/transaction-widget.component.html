@@ -13,11 +13,10 @@
             <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
         </div>
         <div class="group" [ico]="db.storage.group[transaction.group].icon"
-             [style.backgroundColor]="db.storage.group[transaction.group].color"></div>
+             [style.fill]="db.storage.group[transaction.group].color"></div>
     </div>
-    <div class="content" *ngIf="isOpened" [style.backgroundColor]="db.storage.group[transaction.group].color">
+    <div class="content" *ngIf="isOpened">
         <div class="title">
-            <strong>{{transaction.author}}</strong>
             <span>{{db.storage.group[transaction.group].title}}</span>
             <span *ngIf="transaction.title"> : {{transaction.title}}</span>
             <div class="description" *ngIf="transaction.description">{{transaction.description}}</div>

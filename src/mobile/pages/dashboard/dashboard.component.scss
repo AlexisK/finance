@@ -1,6 +1,12 @@
 @import "../../../styles/colors";
+@import "../../../styles/widget";
 
 :host {
   display: block;
   height: 100%;
+  .wrapper {
+    .asLink {
+      @include widget();
+    }
+  }
 }

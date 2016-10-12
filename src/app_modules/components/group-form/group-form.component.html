@@ -2,12 +2,12 @@
     <finance-universal-form [defaultData]="data" [model]="'group'">
         <label>
             <span>title</span>
-            <input type="text" [style.backgroundColor]="form.data.color" placeholder="Food" [(ngModel)]="form.data.title"
+            <input type="text" placeholder="Food" [(ngModel)]="form.data.title"
                    name="title"/>
         </label>
         <label>
             <span>icon</span>
-            <span class="preview" [style.backgroundColor]="form.data.color" [ico]="form.data.icon"></span>
+            <span class="preview" [style.fill]="form.data.color" [ico]="form.data.icon"></span>
             <select [(ngModel)]="form.data.icon" name="icon">
                 <option *ngFor="let icon of icons" [value]="icon">{{icon}}</option>
             </select>

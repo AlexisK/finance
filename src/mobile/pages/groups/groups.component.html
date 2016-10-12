@@ -1,13 +1,15 @@
 <div class="finance-groups">
 
+    <div class="asLink" (click)="popup.show()">
+        <div class="info">+ new Group</div>
+    </div>
+    <finance-popup-small>
+        <finance-group-form></finance-group-form>
+    </finance-popup-small>
+
     <div *ngIf="formComponent">
         <finance-group-widget *ngFor="let group of db.groups" [group]="group" [editWith]="getEntityEditor()"></finance-group-widget>
     </div>
 
-
-    <div class="asLink" (click)="popup.show()">+ new Group</div>
-    <finance-popup-small>
-        <finance-group-form></finance-group-form>
-    </finance-popup-small>
 
 </div>

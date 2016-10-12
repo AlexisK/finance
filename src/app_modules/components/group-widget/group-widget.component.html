@@ -6,9 +6,8 @@
         (click)="editWith(group)"></div>
         <div class="title">{{group.title}}</div>
         <div class="group" [ico]="group.icon"
-             [style.backgroundColor]="group.color"></div>
+             [style.fill]="group.color"></div>
     </div>
-    <div class="content" *ngIf="isOpened"
-         [style.backgroundColor]="group.color">{{group.description}}
+    <div class="content" *ngIf="isOpened" >{{group.description}}
     </div>
 </div>

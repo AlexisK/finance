@@ -1,8 +1,13 @@
 <div class="wrapper">
-    <div class="asLink" (click)="popup.show()">+ Transaction</div>
+
+    <div class="asLink" (click)="popup.show()">
+        <div class="info">+ new Transaction</div>
+    </div>
+
     <finance-popup-small>
         <finance-transaction-form></finance-transaction-form>
     </finance-popup-small>
+
     <finance-transaction-widget *ngFor="let transaction of db.transactions.sort(sortFunc)"
                                 [transaction]="transaction"
                                 [editWith]="getEntityEditor()"></finance-transaction-widget>

@@ -1,0 +1,19 @@
+<div class="finance-widget-wrapper">
+    <div class="icon" *ngIf="icon && iconColor" [ico]="icon" [style.fill]="iconColor"></div>
+    <div class="wrapper">
+        <div class="slider" [style.marginTop.px]="-offsetY" [style.marginLeft.px]="offsetX">
+            <div [style.marginTop.px]="offsetY" class="manipulator" [ico]="'arrow-right'"
+                 [swipe]="swipeRules"></div>
+            <div class="submenu"
+                 [style.marginTop.px]="offsetY">
+                <div class="icon edit" [ico]="'edit'"
+                     *ngIf="model && item"
+                     (click)="formsService.forms[model].edit(item)"></div>
+            </div>
+            <div class="content">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+
+</div>

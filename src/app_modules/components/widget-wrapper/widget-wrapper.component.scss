@@ -1,0 +1,90 @@
+@import "../../../styles/colors";
+@import "../../../styles/animation";
+
+:host {
+  .finance-widget-wrapper {
+    position: relative;
+    height: 40px;
+    margin: 10px 10px 0 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px $grey-3;
+
+    > .icon,
+    .manipulator {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      .ico {
+        width: 26px;
+        height: 26px;
+        margin: 7px;
+      }
+    }
+    > .icon {
+      right: 0;
+    }
+
+    > .wrapper {
+      position: absolute;
+      top: 0;
+      right: 40px;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+
+      line-height: 20px;
+
+      > .slider {
+        position: relative;
+
+        &.animated {
+          @include animate-fast(margin);
+        }
+
+        > .manipulator {
+          left: 0;
+          svg {
+            fill: $grey-3;
+          }
+        }
+
+        > .submenu {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -80px;
+          width: 80px;
+          background-color: $grey-1;
+
+          > .icon {
+            width: 40px;
+            height: 40px;
+            .ico {
+              width: 26px;
+              height: 26px;
+              margin: 7px;
+              fill: $grey-8;
+            }
+          }
+
+        }
+
+        > .content {
+          margin-left: 40px;
+
+          .view {
+            min-height: 40px;
+          }
+
+          .date, p {
+            padding: 10px 10px 10px 0;
+            color: $grey-8;
+          }
+        }
+
+      }
+    }
+  }
+
+}

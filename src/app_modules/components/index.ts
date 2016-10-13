@@ -9,3 +9,4 @@ export * from './group-form';
 export * from './group-widget';
 export * from './transaction-form';
 export * from './transaction-widget';
+export * from './form-wrapper';

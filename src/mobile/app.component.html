@@ -2,6 +2,34 @@
 <div class="main_container app stuccu-app">
     <div class="main-content" [class.blurred]="!state.isAuthorized">
         <finance-navbar></finance-navbar>
+
+        <finance-form-wrapper [model]="'group'" #formFinance>
+            <div *ngIf="formFinance.data">
+                <label>
+                    <span>title:</span>
+                    <input type="text" placeholder="Food" [(ngModel)]="formFinance.data.title"
+                           name="title"/>
+                </label>
+                <label>
+                    <span>icon</span>
+                    <span class="preview" [style.fill]="formFinance.data.color" [ico]="formFinance.data.icon"></span>
+                    <select [(ngModel)]="formFinance.data.icon" name="icon">
+                        <option *ngFor="let icon of icons" [value]="icon">{{icon}}</option>
+                    </select>
+                </label>
+                <label>
+                    <span>color</span>
+                    <span class="preview" [style.backgroundColor]="formFinance.data.color">42</span>
+                    <input type="color" placeholder="#ffffff" [(ngModel)]="formFinance.data.color" name="color"/>
+                </label>
+                <label>
+                    <span>Description</span>
+                    <textarea placeholder="..." [(ngModel)]="formFinance.data.description"
+                              name="description"></textarea>
+                </label>
+            </div>
+        </finance-form-wrapper>
+
         <router-outlet></router-outlet>
     </div>
     <finance-login-form></finance-login-form>

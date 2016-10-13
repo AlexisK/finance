@@ -4,3 +4,4 @@ export * from './firebase.service';
 export * from './state.service';
 export * from './auth.service';
 export * from './database.service';
+export * from './forms.service';

@@ -1,7 +1,7 @@
 import {Component, ViewChild, AfterViewInit} from '@angular/core';
 
 import {GroupFormComponent, PopupSmallComponent} from 'components';
-import {StateService, DatabaseService} from 'services';
+import {StateService, DatabaseService, FormsService} from 'services';
 import {EntitiesListPrototype} from 'prototypes';
 
 @Component({
@@ -15,10 +15,11 @@ export class GroupsPageComponent extends EntitiesListPrototype implements AfterV
     @ViewChild(PopupSmallComponent) popup: any;
 
     constructor(state: StateService,
-                private db: DatabaseService) {
+                private db: DatabaseService,
+                private formsService: FormsService) {
         super();
         this._stateKey = 'isGroupMenuOpen';
-        this.state = state;
+        this.state     = state;
     }
 
     ngAfterViewInit() {

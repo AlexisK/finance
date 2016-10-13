@@ -1,0 +1,22 @@
+export const icons = [
+    'food',
+    'coffee',
+    'cart',
+    'aid-kit',
+    'trophy',
+    'gift',
+    'airplane',
+    'enet',
+    'earth',
+    'leaf',
+    'calculator',
+    'mobile',
+    'terminal',
+    'price-tags',
+    'headphones',
+    'chat',
+    'rocket',
+    'hammer',
+    'lab',
+    'clipboard'
+];

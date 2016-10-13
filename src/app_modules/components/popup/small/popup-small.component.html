@@ -1,4 +1,4 @@
-<div class="stuccu-popup-small" *ngIf="shown" (click)="bgClick()">
+<div class="stuccu-popup-small" *ngIf="shown || alwaysShown" (click)="bgClick()">
     <div class="popup-block" (click)="blockClick()">
         <div *ngIf="title" class="title">
             <span>{{title}}</span>

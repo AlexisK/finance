@@ -1,0 +1,20 @@
+<div class="finance-form-wrapper" *ngIf="model && formsService?.isOpen[model]">
+    <finance-popup-small [alwaysShown]="true">
+        <div class="wrapper">
+            <div class="header">
+                <div class="button icon" [ico]="'x'" (click)="close()"></div>
+            </div>
+            <h3 *ngIf="currentRef">Editing: <span *ngIf="currentRef.title">{{currentRef.title}}</span></h3>
+            <form class="clearfix" (ngSubmit)="doSubmit()">
+                <ng-content *ngIf="data"></ng-content>
+                <div *ngIf="data && !currentRef">
+                    <input type="submit" value="Create"/>
+                </div>
+                <div *ngIf="data && currentRef">
+                    <input class="w-3" type="submit" value="Update"/>
+                    <input class="w-1" type="button" value="Delete" (click)="doDelete()"/>
+                </div>
+            </form>
+        </div>
+    </finance-popup-small>
+</div>

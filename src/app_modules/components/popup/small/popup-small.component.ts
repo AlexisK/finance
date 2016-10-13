@@ -3,13 +3,14 @@ import {Component, Input} from '@angular/core';
 import {PopupPrototype} from 'prototypes';
 
 @Component({
-    selector    : 'finance-popup-small',
-    templateUrl : './popup-small.component.html',
-    styleUrls   : ['./popup-small.component.scss']
+    selector      : 'finance-popup-small',
+    templateUrl   : './popup-small.component.html',
+    styleUrls     : ['./popup-small.component.scss']
 })
 
 export class PopupSmallComponent extends PopupPrototype {
     @Input() title: string;
+    @Input() alwaysShown  = false;
     private interval: any = null;
 
     private bgClick() {

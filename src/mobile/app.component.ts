@@ -1,4 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, ViewChild} from '@angular/core';
+import {icons} from 'utils/icons';
 
 import {FirebaseService, firebase, StateService} from 'services';
 
@@ -10,6 +11,10 @@ import {FirebaseService, firebase, StateService} from 'services';
 })
 
 export class AppComponent {
+    @ViewChild('formFinance') formFinance: any;
+
+    get icons() { return icons; }
+
     constructor(private db: FirebaseService,
                 private state: StateService) {
         // firebase.auth().signInWithEmailAndPassword('test@gmail.com', '111111')

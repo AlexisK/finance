@@ -18,7 +18,8 @@ import {
     DeactivateConditionService,
     FirebaseService,
     AuthService,
-    DatabaseService
+    DatabaseService,
+    FormsService
 } from 'services';
 
 // Other imports
@@ -49,10 +50,11 @@ import * as components from 'components';
         DeactivateConditionService,
         FirebaseService,
         AuthService,
-        DatabaseService
+        DatabaseService,
+        FormsService
     ],
     declarations : [AppComponent]
-        // Directives
+    // Directives
         .concat(helpers.parseList(directives))
         // Components
         .concat(helpers.parseList(components))

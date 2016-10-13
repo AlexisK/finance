@@ -1,7 +1,0 @@
-@import "../../../styles/forms";
-
-:host {
-  .finance-transaction-form {
-    @include form-pop();
-  }
-}

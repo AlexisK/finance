@@ -30,6 +30,45 @@
             </div>
         </finance-form-wrapper>
 
+        <finance-form-wrapper [model]="'transaction'" #formTransaction>
+            <div *ngIf="formTransaction.data">
+                <label class="w-1">
+                    <span>Amount</span>
+                    <input type="number" class="text-right" placeholder="0.00" [(ngModel)]="formTransaction.data.amount"
+                           name="amount"/>
+                </label>
+                <label class="w-1">
+                    <span>Curr.</span>
+                    <select [(ngModel)]="formTransaction.data.currency" name="currency">
+                        <option *ngFor="let currency of db.currencies" [value]="currency.id">{{currency.title}}</option>
+                    </select>
+                </label>
+                <label class="w-2">
+                    <span>Type</span>
+                    <select [(ngModel)]="formTransaction.data.group" name="group">
+                        <option *ngFor="let group of db.groups" [value]="group.id">{{group.title}}</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Title</span>
+                    <input type="text" placeholder="Dinner" [(ngModel)]="formTransaction.data.title" name="title"/>
+                </label>
+                <label class="w-2">
+                    <span>Date</span>
+                    <input type="date" [(ngModel)]="formTransaction.data.date" name="date"/>
+                </label>
+                <label class="w-2">
+                    <span>Time</span>
+                    <input type="time" [(ngModel)]="formTransaction.data.time" name="time"/>
+                </label>
+                <label>
+                    <span>Description</span>
+                    <textarea placeholder="..." [(ngModel)]="formTransaction.data.description"
+                              name="description"></textarea>
+                </label>
+            </div>
+        </finance-form-wrapper>
+
         <router-outlet></router-outlet>
     </div>
     <finance-login-form></finance-login-form>

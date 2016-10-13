@@ -3,12 +3,9 @@
     <div class="asLink" (click)="formsService.isOpen.group = true;">
         <div class="info">+ new Group</div>
     </div>
-    <finance-popup-small>
-        <finance-group-form></finance-group-form>
-    </finance-popup-small>
 
-    <div *ngIf="formComponent">
-        <finance-group-widget *ngFor="let group of db.groups" [group]="group" [editWith]="getEntityEditor()"></finance-group-widget>
+    <div>
+        <finance-group-widget *ngFor="let group of db.groups" [group]="group"></finance-group-widget>
     </div>
 
 

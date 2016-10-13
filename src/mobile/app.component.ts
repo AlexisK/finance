@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, ViewChild} from '@angular/core';
 import {icons} from 'utils/icons';
 
-import {FirebaseService, firebase, StateService} from 'services';
+import {DatabaseService, StateService} from 'services';
 
 @Component({
     selector      : 'finance-app',
@@ -12,21 +12,11 @@ import {FirebaseService, firebase, StateService} from 'services';
 
 export class AppComponent {
     @ViewChild('formFinance') formFinance: any;
+    @ViewChild('formTransaction') formTransaction: any;
 
     get icons() { return icons; }
 
-    constructor(private db: FirebaseService,
+    constructor(private db: DatabaseService,
                 private state: StateService) {
-        // firebase.auth().signInWithEmailAndPassword('test@gmail.com', '111111')
-        //     .catch(error => console.error(error))
-        //     .then(user => {
-        //         let ref = firebase.database().ref('coffer');
-        //
-        //         ref.on('child_added', data => console.log('child_added:\t[', data.key, ': ', data.val(), ']'));
-        //         ref.on('child_changed', data => console.log('child_changed:\t[', data.key, ': ', data.val(), ']'));
-        //
-        //     });
-
-
     }
 }

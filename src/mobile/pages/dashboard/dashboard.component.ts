@@ -1,8 +1,6 @@
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {PopupSmallComponent, TransactionFormComponent} from 'components';
-import {DatabaseService, StateService} from 'services';
-import {EntitiesListPrototype} from 'prototypes';
+import {DatabaseService, FormsService} from 'services';
 
 @Component({
     selector    : 'finance-page-dashboard',
@@ -10,24 +8,15 @@ import {EntitiesListPrototype} from 'prototypes';
     styleUrls   : ['./dashboard.component.scss']
 })
 
-export class DashboardPageComponent extends EntitiesListPrototype implements AfterViewInit {
-    @ViewChild(TransactionFormComponent) formComponent: any;
-    @ViewChild(PopupSmallComponent) popup: any;
-
+export class DashboardPageComponent {
     sortFunc(a: any, b: any) {
         return b.timestamp - a.timestamp;
     }
 
-    constructor(state: StateService,
-                private db: DatabaseService) {
-        super();
-        this._stateKey = 'isTransactionMenuOpen';
-        this.state     = state;
+    constructor(private db: DatabaseService,
+                private formsService: FormsService) {
     }
 
-    ngAfterViewInit() {
-        this._AfterViewInit();
-    }
 }
 
 export const route = {path : '', component : DashboardPageComponent};

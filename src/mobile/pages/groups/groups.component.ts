@@ -1,8 +1,6 @@
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {Component} from '@angular/core';
 
-import {GroupFormComponent, PopupSmallComponent} from 'components';
-import {StateService, DatabaseService, FormsService} from 'services';
-import {EntitiesListPrototype} from 'prototypes';
+import {FormsService, DatabaseService} from 'services';
 
 @Component({
     selector    : 'finance-page-groups',
@@ -10,21 +8,11 @@ import {EntitiesListPrototype} from 'prototypes';
     styleUrls   : ['./groups.component.scss']
 })
 
-export class GroupsPageComponent extends EntitiesListPrototype implements AfterViewInit {
-    @ViewChild(GroupFormComponent) formComponent: any;
-    @ViewChild(PopupSmallComponent) popup: any;
-
-    constructor(state: StateService,
-                private db: DatabaseService,
+export class GroupsPageComponent {
+    constructor(private db: DatabaseService,
                 private formsService: FormsService) {
-        super();
-        this._stateKey = 'isGroupMenuOpen';
-        this.state     = state;
     }
 
-    ngAfterViewInit() {
-        this._AfterViewInit();
-    }
 }
 
 export const route = {path : 'groups', component : GroupsPageComponent};

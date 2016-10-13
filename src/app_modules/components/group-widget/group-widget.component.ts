@@ -10,7 +10,6 @@ import {FormsService} from 'services';
 
 export class GroupWidgetComponent {
     private isOpened = false;
-    @Input() editWith: Function;
     @Input() group: any;
 
     constructor(private formsService: FormsService) {

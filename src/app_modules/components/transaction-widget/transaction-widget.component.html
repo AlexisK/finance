@@ -2,8 +2,8 @@
     <div class="info"
          [class.isOpened]="isOpened"
          (click)="isOpened = !isOpened">
-        <div *ngIf="editWith" class="edit" [ico]="'edit'"
-             (click)="editWith(transaction)"></div>
+        <div class="edit" [ico]="'edit'"
+             (click)="formsService.forms.transaction.edit(transaction)"></div>
         <div class="date">
             <span>{{transaction.timestamp | financeTime}}</span>
             <small>{{transaction.timestamp | financeDate}}</small>

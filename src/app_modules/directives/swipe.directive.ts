@@ -1,6 +1,6 @@
 import {Directive, ElementRef, Input, HostListener, Renderer} from '@angular/core';
 
-const captureLimit = 5;
+const captureLimit = 7;
 
 /**
  * Directive for capturing swipe events.

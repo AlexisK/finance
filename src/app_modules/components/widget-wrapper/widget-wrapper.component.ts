@@ -1,4 +1,4 @@
-import {Component, Input, AfterViewInit} from '@angular/core';
+import {Component, Input, AfterViewInit, EventEmitter} from '@angular/core';
 
 import {FormsService} from 'services';
 

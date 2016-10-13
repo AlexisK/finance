@@ -5,43 +5,29 @@
   display: block;
 
   .finance-transaction-widget {
-    @include widget();
 
-    .info {
-      .date {
-        small {
-          font-size: 12px;
-        }
-      }
-
-      .money {
-        position: absolute;
-        top: 10px;
-        right: 40px;
-
-        & > * {
-          display: inline-block;
-        }
-        & > .amount {
-          margin-right: 4px;
-        }
-
-        &.positive {
-          color: $green;
-        }
-        &.negative {
-          color: $red;
-        }
+    .date {
+      small {
+        font-size: 12px;
       }
     }
 
-    .content {
-      .description {
-        margin-top: 10px;
-        padding-top: 5px;
-        border-top: 1px solid $grey-8;
+    .money {
+      & > * {
+        display: inline-block;
+      }
+      & > .amount {
+        margin-right: 4px;
+      }
+
+      &.positive {
+        color: $green;
+      }
+      &.negative {
+        color: $red;
       }
     }
+
   }
 
 }

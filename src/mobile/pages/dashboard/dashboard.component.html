@@ -4,20 +4,6 @@
         <div class="info">+ new Transaction</div>
     </div>
 
-    <finance-widget-wrapper
-            [lines]="2" [model]="'transaction'" [item]="{}"
-            [icon]="'clipboard'" [iconColor]="'#f00'">
-        <div class="view">
-            <div class="date">
-                <span>12:12</span>
-                <small>10/03</small>
-            </div>
-        </div>
-        <div class="view">
-            <p>Description</p>
-        </div>
-    </finance-widget-wrapper>
-
     <finance-transaction-widget *ngFor="let transaction of db.transactions.sort(sortFunc)"
                                 [transaction]="transaction"></finance-transaction-widget>
 </div>

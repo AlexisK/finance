@@ -37,6 +37,7 @@
 
       > .slider {
         position: relative;
+        width: 100%;
 
         &.animated {
           @include animate-fast(margin);
@@ -72,14 +73,18 @@
 
         > .content {
           margin-left: 40px;
+          color: $grey-8;
 
           .view {
             min-height: 40px;
           }
 
-          .date, p {
+          .money, .date, p {
             padding: 10px 10px 10px 0;
-            color: $grey-8;
+          }
+
+          .right {
+            float: right;
           }
         }
 

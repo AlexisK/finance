@@ -1,25 +1,23 @@
 <div class="finance-transaction-widget" *ngIf="transaction">
-    <div class="info"
-         [class.isOpened]="isOpened"
-         (click)="isOpened = !isOpened">
-        <div class="edit" [ico]="'edit'"
-             (click)="formsService.forms.transaction.edit(transaction)"></div>
-        <div class="date">
-            <span>{{transaction.timestamp | financeTime}}</span>
-            <small>{{transaction.timestamp | financeDate}}</small>
+    <finance-widget-wrapper *ngIf="transaction"
+                            [lines]="transaction.description && 3 || 2" [model]="'transaction'" [item]="transaction"
+                            [icon]="db.storage.group[transaction.group].icon" [iconColor]="db.storage.group[transaction.group].color">
+        <div class="view">
+            <div class="money {{db.storage.currency[transaction.currency].getColorClass(transaction.amount)}} right">
+                <div class="amount">{{transaction.amount | financeMoney}}</div>
+                <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
+            </div>
+            <div class="date">
+                <span>{{transaction.timestamp | financeTime}}</span>
+                <small>{{transaction.timestamp | financeDate}}</small>
+            </div>
         </div>
-        <div class="money {{db.storage.currency[transaction.currency].getColorClass(transaction.amount)}}">
-            <div class="amount">{{transaction.amount | financeMoney}}</div>
-            <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
+        <div class="view">
+            <p class="right">{{db.storage.group[transaction.group].title}}</p>
+            <p *ngIf="transaction.title">{{transaction.title}}</p>
         </div>
-        <div class="group" [ico]="db.storage.group[transaction.group].icon"
-             [style.fill]="db.storage.group[transaction.group].color"></div>
-    </div>
-    <div class="content" *ngIf="isOpened">
-        <div class="title">
-            <span>{{db.storage.group[transaction.group].title}}</span>
-            <span *ngIf="transaction.title"> : {{transaction.title}}</span>
+        <div class="view">
             <div class="description" *ngIf="transaction.description">{{transaction.description}}</div>
         </div>
-    </div>
+    </finance-widget-wrapper>
 </div>

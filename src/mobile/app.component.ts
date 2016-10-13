@@ -13,6 +13,7 @@ import {DatabaseService, StateService} from 'services';
 export class AppComponent {
     @ViewChild('formFinance') formFinance: any;
     @ViewChild('formTransaction') formTransaction: any;
+    @ViewChild('formCurrency') formCurrency: any;
 
     get icons() { return icons; }
 

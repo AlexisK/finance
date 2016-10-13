@@ -1,0 +1,12 @@
+<div class="finance-currencies">
+
+    <div class="asLink" (click)="formsService.isOpen.currency = true;">
+        <div class="info">+ new Currency</div>
+    </div>
+
+    <div>
+        <finance-group-widget *ngFor="let group of db.groups" [group]="group"></finance-group-widget>
+    </div>
+
+
+</div>

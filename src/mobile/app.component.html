@@ -69,6 +69,19 @@
             </div>
         </finance-form-wrapper>
 
+        <finance-form-wrapper [model]="'currency'" #formCurrency>
+            <div *ngIf="formCurrency.data">
+                <label>
+                    <span>title</span>
+                    <input type="text" placeholder="UAH" [(ngModel)]="formCurrency.data.title" name="title"/>
+                </label>
+                <label>
+                    <span>Warning limit</span>
+                    <input type="number" placeholder="-100.00" [(ngModel)]="formCurrency.data.warningLimit" name="warningLimit"/>
+                </label>
+            </div>
+        </finance-form-wrapper>
+
         <router-outlet></router-outlet>
     </div>
     <finance-login-form></finance-login-form>

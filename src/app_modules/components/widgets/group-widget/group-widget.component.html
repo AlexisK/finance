@@ -1,0 +1,8 @@
+<div class="finance-group-widget" *ngIf="group">
+    <finance-widget-wrapper *ngIf="group"
+                            [lines]="group.description && 2 || 1" [model]="'group'" [item]="group"
+                            [icon]="group.icon" [iconColor]="group.color">
+        <div class="view"><p>{{group.title}}</p></div>
+        <div class="view" *ngIf="group.description"><p>{{group.description}}</p></div>
+    </finance-widget-wrapper>
+</div>

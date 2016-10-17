@@ -1,0 +1,6 @@
+<div class="finance-currency-widget" *ngIf="currency">
+    <finance-widget-wrapper *ngIf="currency"
+                            [lines]="1" [model]="'currency'" [item]="currency">
+        <div class="view"><p>{{currency.title}}</p></div>
+    </finance-widget-wrapper>
+</div>

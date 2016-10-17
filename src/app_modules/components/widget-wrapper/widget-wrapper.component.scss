@@ -44,6 +44,14 @@
           svg {
             fill: $grey-8;
           }
+
+          .ico {
+            @include animate-fast(transform);
+          }
+
+          &.alter .ico {
+            transform: rotate(45deg);
+          }
         }
 
         > .submenu {

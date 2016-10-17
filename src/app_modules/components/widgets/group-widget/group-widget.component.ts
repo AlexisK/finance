@@ -9,7 +9,6 @@ import {FormsService} from 'services';
 })
 
 export class GroupWidgetComponent {
-    private isOpened = false;
     @Input() group: any;
 
     constructor(private formsService: FormsService) {

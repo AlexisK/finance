@@ -1,4 +1,9 @@
+@import "../../../styles/widget";
+
 :host {
   .finance-currencies {
+    .asLink {
+      @include widget();
+    }
   }
 }

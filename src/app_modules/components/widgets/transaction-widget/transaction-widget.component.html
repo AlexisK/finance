@@ -16,8 +16,8 @@
             <p class="right">{{db.storage.group[transaction.group].title}}</p>
             <p *ngIf="transaction.title">{{transaction.title}}</p>
         </div>
-        <div class="view">
-            <div class="description" *ngIf="transaction.description">{{transaction.description}}</div>
+        <div class="view" *ngIf="transaction.description">
+            <div class="description">{{transaction.description}}</div>
         </div>
     </finance-widget-wrapper>
 </div>

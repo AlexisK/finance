@@ -9,13 +9,13 @@
                     <div>{{currency.amount}}</div>
                 </div>
             </div>
+            <br />
         </div>
         <div class="widget">
             <h1>Latest transactions</h1>
-
-
-            <finance-transaction-widget *ngFor="let transaction of transactions"
-                                        [transaction]="transaction"></finance-transaction-widget>
         </div>
+
+        <finance-transaction-widget *ngFor="let transaction of transactions"
+                                    [transaction]="transaction"></finance-transaction-widget>
     </div>
 </div>

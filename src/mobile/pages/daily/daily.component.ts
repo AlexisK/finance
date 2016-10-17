@@ -2,6 +2,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
 
+import {parsers} from 'utils';
+
 @Component({
     selector    : 'finance-page-daily',
     templateUrl : './daily.component.html',
@@ -18,7 +20,7 @@ export class DailyPageComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.paramsSubscription = this.route.params.subscribe((params: any) => {
             let date = new Date(0);
-            if ( params.date === 'today' ) {
+            if (params.date === 'today') {
                 let today = new Date();
                 date.setFullYear(today.getFullYear());
                 date.setMonth(today.getMonth());
@@ -26,7 +28,7 @@ export class DailyPageComponent implements OnInit, OnDestroy {
             } else {
                 let dateList = params.date.split(/\D/g);
                 date.setFullYear(dateList[0]);
-                date.setMonth(dateList[1]);
+                date.setMonth(dateList[1] - 1);
                 date.setDate(dateList[2]);
             }
             this.date = date;

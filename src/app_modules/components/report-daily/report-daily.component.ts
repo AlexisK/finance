@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, AfterViewInit} from '@angular/core';
 
-import {parsers} from 'utils';
+import {parsers, helpers} from 'utils';
 import {DatabaseService, FormsService} from 'services';
 
 @Component({
@@ -9,7 +9,8 @@ import {DatabaseService, FormsService} from 'services';
     styleUrls   : ['./report-daily.component.scss']
 })
 
-export class ReportDailyComponent {
+export class ReportDailyComponent implements AfterViewInit {
+    @Input() pathPrefix: string;
     @Input() date: Date;
 
     get transactions() {
@@ -32,5 +33,15 @@ export class ReportDailyComponent {
 
     constructor(private db: DatabaseService,
                 private formsService: FormsService) {
+    }
+
+    ngAfterViewInit() {
+        helpers.waitToRender().then(this.fetchRoute.bind(this));
+    }
+
+    fetchRoute() {
+        if (this.pathPrefix) {
+            history.replaceState({}, 'Daily', `${this.pathPrefix}/${parsers.dateString(this.date)}`);
+        }
     }
 }

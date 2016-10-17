@@ -1,15 +1,23 @@
 <div class="finance-report-daily" *ngIf="date">
 
-    <div class="asLink" (click)="formsService.isOpen.transaction = true;">
-        <div class="info">+ new Transaction</div>
-    </div>
-
-    <div class="time">
+    <div class="datepicker">
+        <div class="btn" [ico]="'navigate_left'" (click)="date.setDate(date.getDate()-1)"></div>
         <label>
             <input type="date" [(ngModel)]="inputDate" />
         </label>
+        <div class="btn" [ico]="'navigate_right'" (click)="date.setDate(date.getDate()+1)"></div>
     </div>
 
-    <finance-transaction-widget *ngFor="let transaction of transactions"
-                                [transaction]="transaction"></finance-transaction-widget>
+    <div class="datepicker-ph"></div>
+
+    <div class="widgets">
+
+        <div class="info">
+            <span>{{date | financeDate}}</span>
+            <span (click)="formsService.isOpen.transaction = true;">+ new Transaction</span>
+        </div>
+
+        <finance-transaction-widget *ngFor="let transaction of transactions"
+                                    [transaction]="transaction"></finance-transaction-widget>
+    </div>
 </div>

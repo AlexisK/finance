@@ -1,4 +1,73 @@
+@import "../../../styles/colors";
+@import "../../../styles/sizes";
+
 :host {
   .finance-report-daily {
+  }
+
+  .datepicker {
+    position: fixed;
+    top: $bar-width;
+    right: 0;
+    left: 0;
+    height: 30px;
+    padding: 0 10px;
+    background-color: #fff;
+
+    > * {
+      display: block;
+      float: left;
+    }
+
+    .btn {
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+      fill: $grey-8;
+    }
+
+    input {
+      height: 30px;
+      border: none;
+    }
+
+    &-ph {
+      height: 30px;
+    }
+  }
+
+  .widgets {
+    margin: 20px 0 0 20px;
+    padding-left: 10px;
+    border-left: 2px solid $grey-4;
+
+    > *:first-child {
+      top: -5px;
+      margin-bottom: -20px;
+    }
+
+    .info {
+      position: relative;
+      margin-left: 10px;
+      font-weight: bold;
+      color: $grey-5;
+    }
+
+    .finance-widget-wrapper {
+      bottom: -20px;
+    }
+
+    .info:before, .finance-widget-wrapper:before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -26px;
+      margin: auto;
+      width: 10px; height: 10px;
+      border-radius: 20px;
+      background-color: $grey-4;
+      font-size: 0;
+    }
   }
 }

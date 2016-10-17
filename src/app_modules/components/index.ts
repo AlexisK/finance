@@ -3,6 +3,7 @@ export * from './ico-prefetch';
 export * from './popup';
 export * from './layout';
 export * from './login-form';
+export * from './report-daily';
 
 export * from './widgets';
 

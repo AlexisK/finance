@@ -1,0 +1,15 @@
+<div class="finance-report-daily" *ngIf="date">
+
+    <div class="asLink" (click)="formsService.isOpen.transaction = true;">
+        <div class="info">+ new Transaction</div>
+    </div>
+
+    <div class="time">
+        <label>
+            <input type="date" [(ngModel)]="inputDate" />
+        </label>
+    </div>
+
+    <finance-transaction-widget *ngFor="let transaction of transactions"
+                                [transaction]="transaction"></finance-transaction-widget>
+</div>

@@ -46,7 +46,7 @@ export class FormsService {
                     author : this.state.user['uid']
                 }, data);
 
-                newData['timestamp'] = ((a: any[]) => new Date(a[0], a[1], a[2], a[3], a[4]))
+                newData['timestamp'] = ((a: any[]) => <any>new Date(a[0], a[1] - 1, a[2], a[3], a[4]))
                     (newData['date'].split(/\D/g).concat(newData['time'].split(/\D/g))) * 1;
                 delete newData['date'];
                 delete newData['time'];

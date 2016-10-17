@@ -10,7 +10,8 @@ interface Storage {
 
 @Injectable()
 export class DatabaseService {
-    public storage: Storage = <Storage>{};
+    public storage: Storage         = <Storage>{};
+    public transactionsPerDate: any = {};
 
     constructor(private ngZone: NgZone,
                 private db: FirebaseService) {
@@ -49,25 +50,53 @@ export class DatabaseService {
         return Object.keys(this.storage['transaction']).map(k => this.storage['transaction'][k]);
     }
 
+    getTransactionsPerDate(date: Date) {
+        let key = <any>date * 1;
+        if (this.transactionsPerDate[key]) {
+            return Object.keys(this.transactionsPerDate[key])
+                .map(k => this.transactionsPerDate[key][k]);
+        }
+        return [];
+    }
+
     subscribeFirebase() {
         this.subscribeModel('currency', CurrencyModel);
         this.subscribeModel('group', GroupModel);
-        this.subscribeModel('transaction', TransactionModel);
-    }
+        this.subscribeModel('transaction', TransactionModel, {
+            onRetrieve : (obj: any, model: string) => {
+                let date      = new Date(obj.timestamp);
+                let cleanDate = new Date(0);
 
-    private elementWorker(model: string, innerModel: any, key: string, data: any) {
-        this.ngZone.run(() => {
-            // console.log('elementWorker', model, this.storage[model][key] = new innerModel(key, data));
-            this.storage[model][key] = new innerModel(key, data);
+                cleanDate.setFullYear(date.getFullYear());
+                cleanDate.setMonth(date.getMonth());
+                cleanDate.setDate(date.getDate());
+
+                let key = <any>cleanDate * 1;
+
+                this.transactionsPerDate[key] =
+                    this.transactionsPerDate[key] || {};
+
+                this.transactionsPerDate[key][obj.id] = obj;
+            }
         });
     }
 
-    private subscribeModel(model: string, innerModel: any) {
+    private elementWorker(model: string, innerModel: any, key: string, data: any, params: any) {
+        this.ngZone.run(() => {
+            // console.log('elementWorker', model, this.storage[model][key] = new innerModel(key, data));
+            this.storage[model][key] = new innerModel(key, data);
+            if (params.onRetrieve) {
+                params.onRetrieve(this.storage[model][key], model);
+            }
+        });
+    }
+
+    private subscribeModel(model: string, innerModel: any, params: any = {}) {
         let ref             = firebase.database().ref(model);
         this.storage[model] = {};
 
-        ref.on('child_added', (data: any) => this.elementWorker(model, innerModel, data.key, data.val()));
-        ref.on('child_changed', (data: any) => this.elementWorker(model, innerModel, data.key, data.val()));
+        ref.on('child_added', (data: any) => this.elementWorker(model, innerModel, data.key, data.val(), params));
+        ref.on('child_changed', (data: any) => this.elementWorker(model, innerModel, data.key, data.val(), params));
         ref.on('child_removed', (data: any) => {
             if (this.storage[model] && this.storage[model][data.key]) {
                 delete this.storage[model][data.key];

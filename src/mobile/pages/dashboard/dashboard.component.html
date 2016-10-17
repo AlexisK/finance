@@ -1,9 +1,3 @@
 <div class="wrapper">
-
-    <div class="asLink" (click)="formsService.isOpen.transaction = true;">
-        <div class="info">+ new Transaction</div>
-    </div>
-
-    <finance-transaction-widget *ngFor="let transaction of db.transactions.sort(sortFunc)"
-                                [transaction]="transaction"></finance-transaction-widget>
+    <a [routerLink]="'/daily/today'">Today</a>
 </div>

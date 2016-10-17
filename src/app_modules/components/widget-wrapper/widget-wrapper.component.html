@@ -1,8 +1,8 @@
 <div class="finance-widget-wrapper">
     <div class="icon" *ngIf="icon && iconColor" [ico]="icon" [style.fill]="iconColor"></div>
     <div class="wrapper">
-        <div class="slider" [style.marginTop.px]="-offsetY" [style.marginLeft.px]="offsetX">
-            <div [style.marginTop.px]="offsetY" class="manipulator" [ico]="'arrow-right'"
+        <div class="slider animated" [style.marginTop.px]="-offsetY" [style.marginLeft.px]="offsetX">
+            <div [style.marginTop.px]="offsetY" class="manipulator" [ico]="'blur_circular'"
                  [swipe]="swipeRules"></div>
             <div class="submenu"
                  [style.marginTop.px]="offsetY">

@@ -39,14 +39,10 @@
         position: relative;
         width: 100%;
 
-        &.animated {
-          @include animate-fast(margin);
-        }
-
         > .manipulator {
           left: 0;
           svg {
-            fill: $grey-3;
+            fill: $grey-8;
           }
         }
 
@@ -69,6 +65,13 @@
             }
           }
 
+        }
+
+        &.animated {
+          @include animate-long(margin);
+          > .manipulator, > .submenu {
+            @include animate-long(margin);
+          }
         }
 
         > .content {

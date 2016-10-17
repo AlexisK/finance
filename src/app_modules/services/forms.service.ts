@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {icons} from 'utils/icons';
 import {parsers} from 'utils';
-import {StateService} from 'services';
+import {StateService, DatabaseService} from 'services';
 
 @Injectable()
 export class FormsService {
@@ -19,23 +19,23 @@ export class FormsService {
 
     private formsDefaultData = {
         group       : {
-            title       : '',
-            icon        : icons[0],
-            color       : '#ffffff',
-            description : ''
+            title       : () => '',
+            icon        : () => icons[0],
+            color       : () => '#ffffff',
+            description : () => ''
         },
         transaction : {
-            amount      : '',
-            currency    : '',
-            group       : '',
-            title       : '',
-            date        : '',
-            time        : '',
-            description : ''
+            amount      : () => '',
+            currency    : () => (this.db.currencies[0] || {id : ''}).id,
+            group       : () => '',
+            title       : () => '',
+            date        : () => parsers.dateString(new Date()),
+            time        : () => parsers.timeString(new Date()),
+            description : () => ''
         },
         currency    : {
-            title        : '',
-            warningLimit : -100
+            title        : () => '',
+            warningLimit : () => -100
         }
     };
 
@@ -66,7 +66,8 @@ export class FormsService {
         }
     };
 
-    constructor(private state: StateService) {}
+    constructor(private state: StateService,
+                private db: DatabaseService) {}
 
     getFormConfig(model: string) {
         return {

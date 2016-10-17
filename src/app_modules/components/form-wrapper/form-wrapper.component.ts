@@ -35,10 +35,16 @@ export class FormWrapperComponent implements AfterViewInit {
         this.clear();
     }
 
+    show() {
+        this.clear();
+        this.formsService.isOpen[this.model] = true;
+    }
+
     close() {
         this.clear();
         this.formsService.isOpen[this.model] = false;
     }
+
 
     edit(entity: any) {
         if (this.config.parsers.toView) {
@@ -52,7 +58,7 @@ export class FormWrapperComponent implements AfterViewInit {
 
     clear() {
         this.currentRef = null;
-        Object.keys(this.config.defData).forEach((k: string) => this.data[k] = this.config.defData[k]);
+        Object.keys(this.config.defData).forEach((k: string) => this.data[k] = this.config.defData[k]());
     }
 
 

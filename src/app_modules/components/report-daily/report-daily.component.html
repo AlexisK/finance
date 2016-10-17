@@ -16,7 +16,7 @@
 
         <div class="info">
             <span>{{date | financeDate}}</span>
-            <span (click)="formsService.isOpen.transaction = true;">+ new Transaction</span>
+            <span (click)="formsService.forms.transaction.show();">+ new Transaction</span>
         </div>
 
         <finance-transaction-widget *ngFor="let transaction of transactions"

@@ -5,7 +5,8 @@ import {helpers} from 'utils';
 const f = function (v: number, l = 2) { return helpers.toLength(v, l); };
 
 @Pipe({
-    name : 'financeDate'
+    name : 'financeDate',
+    pure: false
 })
 export class DatePipe implements PipeTransform {
     transform(value: number) {
@@ -15,7 +16,8 @@ export class DatePipe implements PipeTransform {
 }
 
 @Pipe({
-    name : 'financeTime'
+    name : 'financeTime',
+    pure: false
 })
 export class TimePipe implements PipeTransform {
     transform(value: number) {

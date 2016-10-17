@@ -1,11 +1,13 @@
 <div class="finance-report-daily" *ngIf="date">
 
     <div class="datepicker">
-        <div class="btn" [ico]="'navigate_left'" (click)="date.setDate(date.getDate()-1)"></div>
-        <label>
-            <input type="date" [(ngModel)]="inputDate" />
-        </label>
-        <div class="btn" [ico]="'navigate_right'" (click)="date.setDate(date.getDate()+1)"></div>
+        <div class="wrapper">
+            <div class="btn" [ico]="'navigate_left'" (click)="date.setDate(date.getDate()-1)"></div>
+            <label>
+                <input type="date" [(ngModel)]="inputDate"/>
+            </label>
+            <div class="btn" [ico]="'navigate_right'" (click)="date.setDate(date.getDate()+1)"></div>
+        </div>
     </div>
 
     <div class="datepicker-ph"></div>

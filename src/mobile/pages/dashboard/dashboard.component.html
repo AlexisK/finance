@@ -1,3 +1,21 @@
 <div class="wrapper">
-    <a [routerLink]="'/daily/today'">Today</a>
+    <div class="widgets">
+        <div class="widget">
+            <h1>Currencies</h1>
+
+            <div class="currencies">
+                <div *ngFor="let currency of db.calculatedCurrencies" class="coffer">
+                    <strong>{{currency.title}}</strong>
+                    <div>{{currency.amount}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="widget">
+            <h1>Latest transactions</h1>
+
+
+            <finance-transaction-widget *ngFor="let transaction of transactions"
+                                        [transaction]="transaction"></finance-transaction-widget>
+        </div>
+    </div>
 </div>

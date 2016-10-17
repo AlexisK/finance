@@ -7,14 +7,15 @@
                 <div class="amount">{{transaction.amount | financeMoney}}</div>
                 <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
             </div>
+            <p *ngIf="transaction.title" class="strip">{{transaction.title}}</p>
+            <p *ngIf="!transaction.title">{{transaction.timestamp | financeTime}}</p>
+        </div>
+        <div class="view">
+            <p class="right">{{db.storage.group[transaction.group].title}}</p>
             <div class="date">
                 <span>{{transaction.timestamp | financeTime}}</span>
                 <small class="hidden">{{transaction.timestamp | financeDate}}</small>
             </div>
-        </div>
-        <div class="view">
-            <p class="right">{{db.storage.group[transaction.group].title}}</p>
-            <p *ngIf="transaction.title">{{transaction.title}}</p>
         </div>
         <div class="view" *ngIf="transaction.description">
             <div class="description">{{transaction.description}}</div>

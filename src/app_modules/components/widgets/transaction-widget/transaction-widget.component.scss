@@ -27,6 +27,12 @@
       }
     }
 
+    .strip {
+      word-break: break-all;
+      overflow: hidden;
+      max-height: 10px;
+    }
+
   }
 
 }

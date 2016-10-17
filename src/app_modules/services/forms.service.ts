@@ -31,7 +31,8 @@ export class FormsService {
             title       : () => '',
             date        : () => parsers.dateString(new Date()),
             time        : () => parsers.timeString(new Date()),
-            description : () => ''
+            description : () => '',
+            isIncome    : () => false
         },
         currency    : {
             title        : () => '',
@@ -51,6 +52,12 @@ export class FormsService {
                 delete newData['date'];
                 delete newData['time'];
 
+                newData['amount'] = Math.abs(newData['amount']);
+                if (!newData['isIncome']) {
+                    newData['amount'] = -newData['amount'];
+                }
+                delete newData['isIncome'];
+
                 return newData;
             },
             toView : (data: any) => {
@@ -60,6 +67,9 @@ export class FormsService {
                 newData['time'] = parsers.timeString(newDate);
                 newData['date'] = parsers.dateString(newDate);
                 delete newData['timestamp'];
+
+                newData['isIncome'] = newData['amount'] >= 0;
+                newData['amount'] = Math.abs(newData['amount']);
 
                 return newData;
             }

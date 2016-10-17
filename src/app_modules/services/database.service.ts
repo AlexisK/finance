@@ -3,6 +3,19 @@ import {Injectable, NgZone} from '@angular/core';
 import {FirebaseService, firebase} from 'services';
 import {CurrencyModel, GroupModel, TransactionModel} from 'models';
 
+
+const getStrippedKey = function (ts: number) {
+    let date      = new Date(ts);
+    let cleanDate = new Date(0);
+
+    cleanDate.setFullYear(date.getFullYear());
+    cleanDate.setMonth(date.getMonth());
+    cleanDate.setDate(date.getDate());
+
+    return <any>cleanDate * 1;
+};
+
+
 interface Storage {
     currency: any;
     transaction: any;
@@ -64,19 +77,19 @@ export class DatabaseService {
         this.subscribeModel('group', GroupModel);
         this.subscribeModel('transaction', TransactionModel, {
             onRetrieve : (obj: any, model: string) => {
-                let date      = new Date(obj.timestamp);
-                let cleanDate = new Date(0);
-
-                cleanDate.setFullYear(date.getFullYear());
-                cleanDate.setMonth(date.getMonth());
-                cleanDate.setDate(date.getDate());
-
-                let key = <any>cleanDate * 1;
+                let key = getStrippedKey(obj.timestamp);
 
                 this.transactionsPerDate[key] =
                     this.transactionsPerDate[key] || {};
 
                 this.transactionsPerDate[key][obj.id] = obj;
+            },
+            onDelete   : (obj: any, model: string) => {
+                let key = getStrippedKey(obj.timestamp);
+
+                if (this.transactionsPerDate[key] && this.transactionsPerDate[key][obj.id]) {
+                    delete this.transactionsPerDate[key][obj.id];
+                }
             }
         });
     }
@@ -99,6 +112,9 @@ export class DatabaseService {
         ref.on('child_changed', (data: any) => this.elementWorker(model, innerModel, data.key, data.val(), params));
         ref.on('child_removed', (data: any) => {
             if (this.storage[model] && this.storage[model][data.key]) {
+                if (params.onDelete) {
+                    params.onDelete(this.storage[model][data.key], model);
+                }
                 delete this.storage[model][data.key];
             }
         });

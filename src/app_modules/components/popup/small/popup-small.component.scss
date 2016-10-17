@@ -16,7 +16,7 @@
     > .popup-block {
       @include vertical-align();
       max-height: 100%;
-      margin: auto 32px;
+      margin: auto 20px;
       background: #fff;
       overflow: auto;
 
@@ -60,7 +60,6 @@
 
       .stuccu-select-option {
         color: $blue-dark;
-        border-top: 1px solid $grey-3;
         button svg {
           fill: $blue-green;
         }

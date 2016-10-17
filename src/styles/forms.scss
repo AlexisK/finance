@@ -3,8 +3,8 @@
 
 @mixin form-pop() {
   padding: 20px;
-  background-color: $grey-8;
-  color: #fff;
+  background-color: #fff;
+  color: $grey-8;
 
   .header {
     height: 50px;
@@ -77,6 +77,14 @@
       background-color: $red;
     }
 
+    &[type="checkbox"] {
+      width: 19px; height: 19px;
+      float: left;
+
+      & + span {
+        margin-left: 24px;
+      }
+    }
   }
 
   textarea {

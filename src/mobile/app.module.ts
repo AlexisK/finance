@@ -4,6 +4,11 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_PROVIDERS} from '@angular/http';
 
+
+import {
+    ChartistComponent
+} from 'angular2-chartist';
+
 import {AppComponent}  from './app.component';
 import {routing, appRoutingProviders} from './app.routing';
 
@@ -53,7 +58,7 @@ import * as components from 'components';
         DatabaseService,
         FormsService
     ],
-    declarations : [AppComponent]
+    declarations : [AppComponent, ChartistComponent]
     // Directives
         .concat(helpers.parseList(directives))
         // Components

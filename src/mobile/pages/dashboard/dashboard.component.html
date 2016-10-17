@@ -17,5 +17,12 @@
 
         <finance-transaction-widget *ngFor="let transaction of transactions"
                                     [transaction]="transaction"></finance-transaction-widget>
+
+        <div class="widget">
+            <x-chartist
+                    [data]="chartData"
+                    [type]="chartType">
+            </x-chartist>
+        </div>
     </div>
 </div>

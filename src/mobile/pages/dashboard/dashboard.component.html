@@ -9,7 +9,7 @@
                     <div>{{currency.amount}}</div>
                 </div>
             </div>
-            <br />
+            <br/>
         </div>
         <div class="widget">
             <h1>Latest transactions</h1>
@@ -18,11 +18,17 @@
         <finance-transaction-widget *ngFor="let transaction of transactions"
                                     [transaction]="transaction"></finance-transaction-widget>
 
-        <div class="widget">
-            <x-chartist
-                    [data]="chartData"
-                    [type]="chartType">
-            </x-chartist>
+        <div class="widget" *ngIf="chartData && chartType">
+            <div class="chart-inside">
+                <div class="sizer"></div>
+                <div class="content">
+                    <x-chartist
+                            [data]="chartData"
+                            [type]="chartType"
+                            [options]="chartOptions">
+                    </x-chartist>
+                </div>
+            </div>
         </div>
     </div>
 </div>

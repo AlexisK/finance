@@ -15,31 +15,27 @@ import {DatabaseService} from 'services';
 })
 
 export class DashboardPageComponent {
-    private chartType: ChartType;
-    private chartData: any;
+    private chartType: ChartType = 'Pie';
+    private chartData: any       = {
+        'series' : [
+            20,
+            10,
+            30,
+            40
+        ]
+    };
+    private chartOptions: any    = {
+        // donut      : true,
+        // donutWidth            : 60,
+        startAngle            : 270,
+        showLabel             : true,
+        width                 : '100%',
+        labelInterpolationFnc : (value: any) => {
+            return Math.round(value / this.chartData.series.reduce((a: number, b: number) => a + b) * 100) + '%';
+        }
+    };
 
     constructor(private db: DatabaseService) {
-        this.chartType = 'Bar';
-        this.chartData = {
-            'labels' : [
-                'Jan',
-                'Feb',
-                'Mar',
-                'Apr',
-                'May',
-                'Jun',
-                'Jul',
-                'Aug',
-                'Sep',
-                'Oct',
-                'Nov',
-                'Dec'
-            ],
-            'series' : [
-                [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
-                [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
-            ]
-        };
     }
 
     get transactions() {

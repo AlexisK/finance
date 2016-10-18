@@ -1,0 +1,12 @@
+<div class="finance-chart" *ngIf="data">
+    <div class="chart-inside">
+        <div class="sizer"></div>
+        <div class="content">
+            <x-chartist
+                    [data]="data"
+                    [type]="chartType"
+                    [options]="chartOptions">
+            </x-chartist>
+        </div>
+    </div>
+</div>

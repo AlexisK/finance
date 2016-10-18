@@ -1,9 +1,11 @@
 export * from './ico';
 export * from './ico-prefetch';
-export * from './popup';
 export * from './layout';
+
+export * from './popup';
 export * from './login-form';
 export * from './report-daily';
+export * from './chart';
 
 export * from './widgets';
 

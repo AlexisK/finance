@@ -18,17 +18,21 @@
         <finance-transaction-widget *ngFor="let transaction of transactions"
                                     [transaction]="transaction"></finance-transaction-widget>
 
-        <div class="widget" *ngIf="chartData && chartType">
-            <div class="chart-inside">
-                <div class="sizer"></div>
-                <div class="content">
-                    <x-chartist
-                            [data]="chartData"
-                            [type]="chartType"
-                            [options]="chartOptions">
-                    </x-chartist>
-                </div>
-            </div>
+        <div class="widget has-chart">
+            <h1>This month statistic</h1>
+            <finance-chart [data]="chartData"></finance-chart>
         </div>
+
+        <finance-widget-wrapper *ngFor="let groupData of thisMonthGroupData"
+                                [lines]="1" [model]="'group'" [item]="groupData.group"
+                                [icon]="groupData.group.icon" [iconColor]="groupData.group.color">
+            <div class="view">
+                <p class="right">{{groupData.amount}}</p>
+                <p>{{groupData.group.title}}</p>
+            </div>
+        </finance-widget-wrapper>
+
+        <br />
+        <br />
     </div>
 </div>

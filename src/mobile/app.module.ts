@@ -23,7 +23,8 @@ import {
     FirebaseService,
     AuthService,
     DatabaseService,
-    FormsService
+    FormsService,
+    ChartFormatService
 } from 'services';
 
 // Other imports
@@ -55,7 +56,8 @@ import * as components from 'components';
         FirebaseService,
         AuthService,
         DatabaseService,
-        FormsService
+        FormsService,
+        ChartFormatService
     ],
     declarations : [AppComponent, ChartistComponent]
     // Directives

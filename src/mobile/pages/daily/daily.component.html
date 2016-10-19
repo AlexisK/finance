@@ -1,1 +1,12 @@
-<finance-report-daily [date]="date" [pathPrefix]="'/#/daily'"></finance-report-daily>
+<div class="datepicker">
+    <div class="wrapper">
+        <div class="btn" [ico]="'navigate_left'" (click)="date.setDate(date.getDate()-1); fetchRoute()"></div>
+        <label>
+            <input type="date" [(ngModel)]="inputDate"/>
+        </label>
+        <div class="btn" [ico]="'navigate_right'" (click)="date.setDate(date.getDate()+1); fetchRoute()"></div>
+    </div>
+</div>
+<div class="datepicker-ph"></div>
+
+<finance-report-daily [date]="date"></finance-report-daily>

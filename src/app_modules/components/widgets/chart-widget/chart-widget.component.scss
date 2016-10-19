@@ -1,0 +1,12 @@
+@import "../../../../styles/widget";
+
+:host {
+  .finance-chart-widget {
+    .widget {
+      @include widget-simple();
+    }
+    .finance-widget-wrapper {
+      margin-top: 1px;
+    }
+  }
+}

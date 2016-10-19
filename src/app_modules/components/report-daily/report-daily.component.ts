@@ -1,6 +1,5 @@
-import {Component, Input, AfterViewInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
-import {parsers, helpers} from 'utils';
 import {DatabaseService, FormsService} from 'services';
 
 const swipeLimit = 70;
@@ -11,7 +10,7 @@ const swipeLimit = 70;
     styleUrls   : ['./report-daily.component.scss']
 })
 
-export class ReportDailyComponent implements AfterViewInit {
+export class ReportDailyComponent {
     private swipeOffset = 0;
     @Input() pathPrefix: string;
     @Input() date: Date;
@@ -22,42 +21,21 @@ export class ReportDailyComponent implements AfterViewInit {
         });
     }
 
-    get inputDate() {
-        return parsers.dateString(this.date);
-    }
-
-    set inputDate(data: string) {
-        let dateList = data.split(/\D/g).map((v: string) => +v);
-
-        this.date.setFullYear(dateList[0]);
-        this.date.setMonth(dateList[1] - 1);
-        this.date.setDate(dateList[2]);
-    }
-
     constructor(private db: DatabaseService,
                 private formsService: FormsService) {
     }
 
-    ngAfterViewInit() {
-        helpers.waitToRender().then(this.fetchRoute.bind(this));
-    }
-
-    fetchRoute() {
-        if (this.pathPrefix) {
-            history.replaceState({}, 'Daily', `${this.pathPrefix}/${parsers.dateString(this.date)}`);
-        }
-    }
-
     get swipeRules() {
         return {
-            x: this.swipeX.bind(this),
-            xFinish: this.swipeXFinish.bind(this)
+            x       : this.swipeX.bind(this),
+            xFinish : this.swipeXFinish.bind(this)
         };
     }
 
     swipeX(pos: any) {
         this.swipeOffset = Math.min(swipeLimit, Math.max(0, pos.diff));
     }
+
     swipeXFinish() {
         this.swipeOffset = 0;
     }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {DatabaseService} from 'services';
+import {DatabaseService, ChartFormatService} from 'services';
 import {TransactionModel} from 'models';
 
 @Component({
@@ -11,7 +11,8 @@ import {TransactionModel} from 'models';
 
 export class DashboardPageComponent {
 
-    constructor(private db: DatabaseService) {
+    constructor(private db: DatabaseService,
+                private chartService: ChartFormatService) {
     }
 
     get transactions() {
@@ -32,36 +33,6 @@ export class DashboardPageComponent {
         }
 
         return transactions;
-    }
-
-    getGroupResult() {
-        let groupResult: any = {};
-
-        this.thisMonthTransactions.forEach((transaction: TransactionModel) => {
-            groupResult[transaction['group']] = groupResult[transaction['group']] || 0;
-            groupResult[transaction['group']] += Math.max(0, -transaction['amount']);
-        });
-
-        return groupResult;
-    }
-
-    get thisMonthGroupData() {
-        let groupResult = this.getGroupResult();
-        return Object.keys(groupResult).map((k: string) => {
-            return {
-                group: this.db.storage['group'][k],
-                amount: groupResult[k]
-            };
-        });
-    }
-
-    get chartData() {
-        let groupResult = this.getGroupResult();
-
-        return {
-            'labels' : Object.keys(groupResult).map((k: string) => this.db.storage['group'][k].title),
-            'series' : Object.keys(groupResult).map((k: string) => groupResult[k])
-        };
     }
 
     private getDate() {

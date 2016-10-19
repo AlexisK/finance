@@ -1,8 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, AfterViewInit, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
 
-import {parsers} from 'utils';
+import {parsers, helpers} from 'utils';
 
 @Component({
     selector    : 'finance-page-daily',
@@ -10,11 +10,28 @@ import {parsers} from 'utils';
     styleUrls   : ['./daily.component.scss']
 })
 
-export class DailyPageComponent implements OnInit, OnDestroy {
+export class DailyPageComponent implements AfterViewInit, OnInit, OnDestroy {
+    private pathPrefix = '/#/daily';
     private date: Date;
     private paramsSubscription: Subscription;
 
     constructor(private route: ActivatedRoute) {
+    }
+
+    ngAfterViewInit() {
+        helpers.waitToRender().then(this.fetchRoute.bind(this));
+    }
+
+    get inputDate() {
+        return parsers.dateString(this.date);
+    }
+
+    set inputDate(data: string) {
+        let dateList = data.split(/\D/g).map((v: string) => +v);
+
+        this.date.setFullYear(dateList[0]);
+        this.date.setMonth(dateList[1] - 1);
+        this.date.setDate(dateList[2]);
     }
 
     ngOnInit() {
@@ -33,6 +50,13 @@ export class DailyPageComponent implements OnInit, OnDestroy {
             }
             this.date = date;
         });
+    }
+
+
+    fetchRoute() {
+        if (this.pathPrefix) {
+            history.replaceState({}, 'Daily', `${this.pathPrefix}/${parsers.dateString(this.date)}`);
+        }
     }
 
     ngOnDestroy() {

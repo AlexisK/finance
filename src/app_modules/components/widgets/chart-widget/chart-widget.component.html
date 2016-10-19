@@ -1,0 +1,15 @@
+<div class="finance-chart-widget" *ngIf="transactions">
+    <div class="widget has-chart">
+        <h1 *ngIf="title">{{title}}</h1>
+        <finance-chart [data]="chartService.formatChartTransactions(transactions)"></finance-chart>
+    </div>
+
+    <finance-widget-wrapper *ngFor="let groupData of chartService.formatDisplayTransaction(transactions)"
+                            [lines]="1" [model]="'group'" [item]="groupData.group"
+                            [icon]="groupData.group.icon" [iconColor]="groupData.group.color">
+        <div class="view">
+            <p class="right">{{groupData.amount}}</p>
+            <p>{{groupData.group.title}}</p>
+        </div>
+    </finance-widget-wrapper>
+</div>

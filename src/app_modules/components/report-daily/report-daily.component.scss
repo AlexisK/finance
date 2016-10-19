@@ -8,6 +8,7 @@
   width: 100%;
   padding-bottom: 40px;
   overflow: hidden;
+  transform: translate3d(0, 0, 0);
 
   .finance-report-daily {
     .widget {
@@ -16,7 +17,10 @@
   }
 
   .swipe-block.animated {
-    @include animate-normal(margin);
+    @include animate-long(transform);
+  }
+  .swipe-block.swiped {
+    transform: translate3d(70px, 0, 0);
   }
 
   .widgets {

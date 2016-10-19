@@ -1,8 +1,8 @@
 <div class="finance-report-daily" *ngIf="date">
 
     <div class="swipe-block"
-         [style.marginLeft.px]="swipeOffset" [style.marginRight.px]="-swipeOffset"
-         [class.animated]="!swipeOffset">
+        [class.animated]="!swipeOffset"
+        [style.transform]="'translate3d('+swipeOffset+'px, 0, 0)'">
         <div class="widgets">
 
             <div class="info">

@@ -10,7 +10,7 @@
                 <div class="coffer">{{db.storage.currency[transaction.currency].title}}</div>
             </div>
             <p *ngIf="transaction.title" class="strip">{{transaction.title}}</p>
-            <p *ngIf="!transaction.title">{{transaction.timestamp | financeTime}}</p>
+            <p *ngIf="!transaction.title">{{db.storage.group[transaction.group].title}}</p>
         </div>
         <div class="view">
             <p class="right">{{db.storage.group[transaction.group].title}}</p>

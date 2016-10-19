@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnInit, OnDestroy} from '@angular/core';
+import {Component, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
 
@@ -14,6 +14,8 @@ export class DailyPageComponent implements AfterViewInit, OnInit, OnDestroy {
     private pathPrefix = '/#/daily';
     private date: Date;
     private paramsSubscription: Subscription;
+
+    @ViewChild('input') inputNode: ElementRef;
 
     constructor(private route: ActivatedRoute) {
     }
@@ -57,6 +59,10 @@ export class DailyPageComponent implements AfterViewInit, OnInit, OnDestroy {
         if (this.pathPrefix) {
             history.replaceState({}, 'Daily', `${this.pathPrefix}/${parsers.dateString(this.date)}`);
         }
+    }
+
+    onClick() {
+        this.inputNode.nativeElement.click();
     }
 
     ngOnDestroy() {

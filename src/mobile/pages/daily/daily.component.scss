@@ -30,6 +30,18 @@
         float: left;
       }
 
+      > label {
+        display: none;
+      }
+
+      > .date {
+        padding: 0 10px;
+        line-height: 30px;
+        font-size: 14px;
+        font-weight: bold;
+        color: $grey-8;
+      }
+
       .btn {
         width: 30px;
         height: 30px;

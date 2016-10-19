@@ -17,7 +17,8 @@
         </div>
     </div>
 
-    <br /><br />
+    <br/><br/>
 
-    <finance-chart-widget [transactions]="transactions" [title]="'Chart'"></finance-chart-widget>
+    <finance-chart-widget [transactions]="transactions"
+                          [title]="'Chart ' + (date | financeDate)"></finance-chart-widget>
 </div>

@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="btn" [ico]="'navigate_left'" (click)="date.setDate(date.getDate()-1); fetchRoute()"></div>
         <label>
-            <input type="date" [(ngModel)]="inputDate"/>
+            <input type="date" [(ngModel)]="inputDate" (change)="fetchRoute()"/>
         </label>
         <div class="btn" [ico]="'navigate_right'" (click)="date.setDate(date.getDate()+1); fetchRoute()"></div>
     </div>

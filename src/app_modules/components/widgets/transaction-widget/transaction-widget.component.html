@@ -1,7 +1,9 @@
 <div class="finance-transaction-widget" *ngIf="transaction">
     <finance-widget-wrapper *ngIf="transaction"
                             [lines]="transaction.description && 3 || 2" [model]="'transaction'" [item]="transaction"
-                            [icon]="db.storage.group[transaction.group].icon" [iconColor]="db.storage.group[transaction.group].color">
+                            [icon]="db.storage.group[transaction.group].icon"
+                            [iconColor]="db.storage.group[transaction.group].color"
+                            [backValue]="transaction.timestamp | financeTime">
         <div class="view">
             <div class="money {{db.storage.currency[transaction.currency].getColorClass(transaction.amount)}} right">
                 <div class="amount">{{transaction.amount | financeMoney}}</div>

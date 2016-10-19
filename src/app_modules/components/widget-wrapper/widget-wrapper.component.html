@@ -1,4 +1,5 @@
 <div class="finance-widget-wrapper">
+    <div *ngIf="backValue" class="back-value">{{backValue}}</div>
     <div class="icon" *ngIf="icon && iconColor" [ico]="icon" [style.fill]="iconColor"></div>
     <div class="wrapper">
         <div class="slider" [class.animated]="!isSwiping" [style.marginTop.px]="-offsetY" [style.marginLeft.px]="offsetX">

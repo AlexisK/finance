@@ -3,6 +3,8 @@ import {Component, Input, AfterViewInit} from '@angular/core';
 import {parsers, helpers} from 'utils';
 import {DatabaseService, FormsService} from 'services';
 
+const swipeLimit = 70;
+
 @Component({
     selector    : 'finance-report-daily',
     templateUrl : './report-daily.component.html',
@@ -10,6 +12,7 @@ import {DatabaseService, FormsService} from 'services';
 })
 
 export class ReportDailyComponent implements AfterViewInit {
+    private swipeOffset = 0;
     @Input() pathPrefix: string;
     @Input() date: Date;
 
@@ -43,5 +46,19 @@ export class ReportDailyComponent implements AfterViewInit {
         if (this.pathPrefix) {
             history.replaceState({}, 'Daily', `${this.pathPrefix}/${parsers.dateString(this.date)}`);
         }
+    }
+
+    get swipeRules() {
+        return {
+            x: this.swipeX.bind(this),
+            xFinish: this.swipeXFinish.bind(this)
+        };
+    }
+
+    swipeX(pos: any) {
+        this.swipeOffset = Math.min(swipeLimit, Math.max(0, pos.diff));
+    }
+    swipeXFinish() {
+        this.swipeOffset = 0;
     }
 }

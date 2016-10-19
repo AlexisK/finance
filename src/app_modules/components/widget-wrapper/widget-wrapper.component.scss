@@ -9,6 +9,17 @@
     background-color: #fff;
     box-shadow: 0 2px 5px $grey-3;
 
+    > .back-value {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      height: 20px;
+      line-height: 20px;
+      z-index: -1;
+    }
+
     > .icon,
     .manipulator {
       position: absolute;
@@ -97,6 +108,7 @@
           .right {
             float: right;
           }
+
         }
 
       }

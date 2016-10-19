@@ -12,14 +12,20 @@
 
     <div class="datepicker-ph"></div>
 
-    <div class="widgets">
+    <div class="swipe-block"
+         [style.marginLeft.px]="swipeOffset" [style.marginRight.px]="-swipeOffset"
+         [class.animated]="!swipeOffset">
+        <div class="widgets">
 
-        <div class="info">
-            <span>{{date | financeDate}}</span>
-            <span (click)="formsService.forms.transaction.show();">+ new Transaction</span>
+            <div class="info">
+                <span>{{date | financeDate}}</span>
+                <span (click)="formsService.forms.transaction.show();">+ new Transaction</span>
+            </div>
+
+            <finance-transaction-widget *ngFor="let transaction of transactions"
+                                        [transaction]="transaction"></finance-transaction-widget>
+
+            <div class="swipeArea" [swipe]="swipeRules"></div>
         </div>
-
-        <finance-transaction-widget *ngFor="let transaction of transactions"
-                                    [transaction]="transaction"></finance-transaction-widget>
     </div>
 </div>

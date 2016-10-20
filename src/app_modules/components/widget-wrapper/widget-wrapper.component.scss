@@ -58,7 +58,7 @@
           }
 
           .ico {
-            @include animate-fast(transform);
+            @include animate-long(transform);
           }
 
           &.alter .ico {
@@ -88,9 +88,9 @@
         }
 
         &.animated {
-          @include animate-long(transform);
+          @include animate-fast(transform);
           > .manipulator, > .submenu {
-            @include animate-long(transform);
+            @include animate-fast(transform);
           }
         }
 

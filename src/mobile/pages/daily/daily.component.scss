@@ -13,7 +13,8 @@
     left: 0;
     height: 30px;
     padding: 0 10px;
-    background-color: #fff;
+    background-color: rgba(#fff, .85);
+    box-shadow: 0 0 5px $grey-8;
     z-index: 100;
 
     &-ph {

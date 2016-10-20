@@ -33,7 +33,7 @@ export class ReportDailyComponent {
     }
 
     swipeX(pos: any) {
-        this.swipeOffset = Math.min(swipeLimit, Math.max(0, pos.diff));
+        this.swipeOffset = swipeLimit;
     }
 
     swipeXFinish() {

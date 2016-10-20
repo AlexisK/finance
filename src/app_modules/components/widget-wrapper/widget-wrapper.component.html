@@ -2,12 +2,14 @@
     <div *ngIf="backValue" class="back-value">{{backValue}}</div>
     <div class="icon" *ngIf="icon && iconColor" [ico]="icon" [style.fill]="iconColor"></div>
     <div class="wrapper">
-        <div class="slider" [class.animated]="!isSwiping" [style.marginTop.px]="-offsetY" [style.marginLeft.px]="offsetX">
-            <div [style.marginTop.px]="offsetY" class="manipulator" [ico]="'blur_circular'"
+        <div class="slider" [class.animated]="!isSwiping"
+             [style.transform]="'translate3d('+offsetX+'px, '+-offsetY+'px, 0)'">
+            <div class="manipulator" [ico]="'blur_circular'"
+                 [style.transform]="'translate3d(0, '+offsetY+'px, 0)'"
                  [class.alter]="isSwiping"
                  [swipe]="swipeRules"></div>
             <div class="submenu"
-                 [style.marginTop.px]="offsetY">
+                 [style.transform]="'translate3d(0, '+offsetY+'px, 0)'">
                 <div class="icon edit" [ico]="'edit'"
                      *ngIf="model && item"
                      (click)="formsService.forms[model].edit(item)"></div>

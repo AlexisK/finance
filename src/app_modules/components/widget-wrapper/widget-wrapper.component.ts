@@ -65,11 +65,12 @@ export class WidgetWrapperComponent implements AfterViewInit {
 
     swipeYfinish(pos: any) {
 
-        let diff     = this.offsetY % yStep;
-        this.offsetY = this.offsetYinit = this.offsetY - diff;
-        if (diff > yStep / 2) {
-            this.offsetY = this.offsetYinit = this.offsetY + yStep;
-        }
+        // let diff     = this.offsetY % yStep;
+        // this.offsetY = this.offsetYinit = this.offsetY - diff;
+        // if (diff > yStep / 2) {
+        //     this.offsetY = this.offsetYinit = this.offsetY + yStep;
+        // }
+        this.offsetY   = 0;
         this.isSwiping = false;
     }
 }

@@ -88,9 +88,9 @@
         }
 
         &.animated {
-          @include animate-long(margin);
+          @include animate-long(transform);
           > .manipulator, > .submenu {
-            @include animate-long(margin);
+            @include animate-long(transform);
           }
         }
 

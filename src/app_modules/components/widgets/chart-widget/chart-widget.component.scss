@@ -4,6 +4,28 @@
   .finance-chart-widget {
     .widget {
       @include widget-simple();
+
+      .info {
+        display: block;
+        float: right;
+        margin: 10px 20px;
+        text-align: right;
+
+        > * {
+          display: block;
+          float: right;
+          margin-left: 4px;
+        }
+
+        select {
+          line-height: 20px;
+          background: #fff;
+          border: none;
+          border-bottom: 1px solid $grey-8;
+          font-weight: bold;
+          color: $grey-8;
+        }
+      }
     }
     .finance-widget-wrapper {
       margin-top: 1px;

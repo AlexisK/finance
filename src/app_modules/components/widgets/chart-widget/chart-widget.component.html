@@ -1,15 +1,24 @@
 <div class="finance-chart-widget" *ngIf="transactions">
     <div class="widget has-chart">
+        <label class="info">
+            <select [(ngModel)]="currency">
+                <option *ngFor="let currency of db.currencies" [value]="currency.id">{{currency.title}}</option>
+            </select>
+            <strong *ngIf="!ownTransactions.length">No data!</strong>
+        </label>
         <h1 *ngIf="title">{{title}}</h1>
-        <finance-chart [data]="chartService.formatChartTransactions(transactions)"></finance-chart>
+        <finance-chart *ngIf="ownTransactions.length"
+                       [data]="chartService.formatChartTransactions(ownTransactions)"></finance-chart>
     </div>
 
-    <finance-widget-wrapper *ngFor="let groupData of chartService.formatDisplayTransaction(transactions)"
-                            [lines]="1" [model]="'group'" [item]="groupData.group"
-                            [icon]="groupData.group.icon" [iconColor]="groupData.group.color">
-        <div class="view">
-            <p class="right">{{groupData.amount}}</p>
-            <p>{{groupData.group.title}}</p>
-        </div>
-    </finance-widget-wrapper>
+    <div *ngIf="ownTransactions.length">
+        <finance-widget-wrapper *ngFor="let groupData of chartService.formatDisplayTransaction(ownTransactions)"
+                                [lines]="1" [model]="'group'" [item]="groupData.group"
+                                [icon]="groupData.group.icon" [iconColor]="groupData.group.color">
+            <div class="view">
+                <p class="right">{{groupData.amount}} {{db.storage.currency[currency].title}}</p>
+                <p>{{groupData.group.title}}</p>
+            </div>
+        </finance-widget-wrapper>
+    </div>
 </div>

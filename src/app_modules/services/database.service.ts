@@ -2,6 +2,7 @@ import {Injectable, NgZone} from '@angular/core';
 
 import {FirebaseService, firebase} from 'services';
 import {CurrencyModel, GroupModel, TransactionModel} from 'models';
+import {Subject} from 'rxjs/Subject';
 
 
 const getStrippedKey = function (ts: number) {
@@ -25,6 +26,11 @@ interface Storage {
 export class DatabaseService {
     public storage: Storage         = <Storage>{};
     public transactionsPerDate: any = {};
+    public subjects: any            = {
+        currency: new Subject(),
+        transaction: new Subject(),
+        group: new Subject()
+    };
 
     constructor(private ngZone: NgZone,
                 private db: FirebaseService) {
@@ -101,6 +107,7 @@ export class DatabaseService {
             if (params.onRetrieve) {
                 params.onRetrieve(this.storage[model][key], model);
             }
+            this.subjects[model].next(this.storage[model][key]);
         });
     }
 

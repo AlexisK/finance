@@ -45,7 +45,12 @@ export class WidgetWrapperComponent implements AfterViewInit {
     }
 
     swipeX(pos: any) {
-        this.offsetX   = Math.min(this.offsetXmax, Math.max(0, this.offsetXinit + pos.diff));
+        // this.offsetX   = Math.min(this.offsetXmax, Math.max(0, this.offsetXinit + pos.diff));
+        if ( pos.diff > 0 ) {
+            this.offsetX = xStep;
+        } else {
+            this.offsetX = 0;
+        }
         this.isSwiping = true;
     }
 
@@ -59,7 +64,12 @@ export class WidgetWrapperComponent implements AfterViewInit {
     }
 
     swipeY(pos: any) {
-        this.offsetY   = Math.min(this.offsetYmax, Math.max(0, this.offsetYinit - pos.diff));
+        // this.offsetY   = Math.min(this.offsetYmax, Math.max(0, this.offsetYinit - pos.diff));
+        if ( pos.diff < 0 ) {
+            this.offsetY = yStep;
+        } else {
+            this.offsetY = 0;
+        }
         this.isSwiping = true;
     }
 

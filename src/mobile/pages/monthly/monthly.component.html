@@ -1,0 +1,10 @@
+<div class="datepicker">
+    <div class="wrapper">
+        <div class="btn" [ico]="'navigate_left'" (click)="date.setMonth(date.getMonth()-1); fetchRoute()"></div>
+        <div class="date">{{date | financeDate: 'month'}}</div>
+        <div class="btn" [ico]="'navigate_right'" (click)="date.setMonth(date.getMonth()+1); fetchRoute()"></div>
+    </div>
+</div>
+<div class="datepicker-ph"></div>
+
+<finance-report-monthly [date]="date"></finance-report-monthly>

@@ -4,14 +4,24 @@ import {helpers} from 'utils';
 
 const f = function (v: number, l = 2) { return helpers.toLength(v, l); };
 
+const FORMATS = {
+    date: 'date',
+    month: 'month'
+};
+
 @Pipe({
     name : 'financeDate',
     pure: false
 })
 export class DatePipe implements PipeTransform {
-    transform(value: number) {
+    transform(value: number, format = FORMATS.date) {
         let date = new Date(value);
-        return `${f(date.getDate())}/${f(date.getMonth() + 1)}/${date.getFullYear()}`;
+        if ( format === FORMATS.date ) {
+            return `${f(date.getDate())}/${f(date.getMonth() + 1)}/${date.getFullYear()}`;
+        }
+        if ( format === FORMATS.month ) {
+            return `${f(date.getMonth() + 1)}/${date.getFullYear()}`;
+        }
     }
 }
 

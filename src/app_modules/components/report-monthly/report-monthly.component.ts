@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+
+import {DatabaseService} from 'services';
 
 @Component({
     selector    : 'finance-report-monthly',
@@ -7,6 +9,14 @@ import {Component} from '@angular/core';
 })
 
 export class ReportMonthlyComponent {
-    constructor() {
+    @Input() date: Date;
+
+    get transactions() {
+        return this.db.getTransactionsPerMonth(this.date).sort((a: any, b: any) => {
+            return b.timestamp - a.timestamp;
+        });
+    }
+
+    constructor(private db: DatabaseService) {
     }
 }

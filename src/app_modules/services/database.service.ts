@@ -27,9 +27,9 @@ export class DatabaseService {
     public storage: Storage         = <Storage>{};
     public transactionsPerDate: any = {};
     public subjects: any            = {
-        currency: new Subject(),
-        transaction: new Subject(),
-        group: new Subject()
+        currency    : new Subject(),
+        transaction : new Subject(),
+        group       : new Subject()
     };
 
     constructor(private ngZone: NgZone,
@@ -76,6 +76,22 @@ export class DatabaseService {
                 .map(k => this.transactionsPerDate[key][k]);
         }
         return [];
+    }
+
+    getTransactionsPerMonth(date: Date) {
+        date.setDate(1);
+
+        let from = new Date(<any>date * 1);
+        let to   = new Date(<any>date * 1);
+        to.setMonth(to.getMonth() + 1);
+
+        let result: any[] = [];
+
+        for (; from < to; from.setDate(from.getDate() + 1)) {
+            result = result.concat(this.getTransactionsPerDate(from));
+        }
+
+        return result;
     }
 
     subscribeFirebase() {

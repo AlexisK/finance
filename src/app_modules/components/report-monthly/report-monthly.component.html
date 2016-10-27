@@ -1,3 +1,4 @@
-<div class="finance-report-monthly">
-    <ng-content></ng-content>
+<div class="finance-report-monthly" *ngIf="date">
+    <finance-chart-widget [transactions]="transactions"
+                          [title]="'Chart ' + (date | financeDate: 'month')"></finance-chart-widget>
 </div>

@@ -19,7 +19,7 @@
                 <nav>
                     <a [routerLink]="'/'" (click)="state.isMainMenuOpen = false">Dashboard</a>
                     <a [routerLink]="'/daily/today'" (click)="state.isMainMenuOpen = false">Daily</a>
-                    <a href="#">Monthly</a>
+                    <a [routerLink]="'/monthly/today'" (click)="state.isMainMenuOpen = false">Monthly</a>
                     <a href="#">Year</a>
                     <a [routerLink]="'/groups/'" (click)="state.isMainMenuOpen = false">Groups</a>
                     <a [routerLink]="'/currencies/'" (click)="state.isMainMenuOpen = false">Currencies</a>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="menus">
-                <div class="asLink"></div>
+                <div class="asLink">Button example</div>
             </div>
 
         </div>

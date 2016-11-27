@@ -4,6 +4,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_PROVIDERS} from '@angular/http';
 
+
 import {
     ChartistComponent
 } from 'angular2-chartist';

@@ -21,9 +21,10 @@ export class WidgetWrapperComponent implements AfterViewInit {
     private offsetXinit = 0;
     private offsetXmax  = xStep;
 
-    @Input() icon      = '';
-    @Input() iconColor = '';
-    @Input() lines     = 1;
+    @Input() isInteractive = true;
+    @Input() icon          = '';
+    @Input() iconColor     = '';
+    @Input() lines         = 1;
     @Input() model: string;
     @Input() item: any;
     @Input() backValue: string;
@@ -46,7 +47,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 
     swipeX(pos: any) {
         // this.offsetX   = Math.min(this.offsetXmax, Math.max(0, this.offsetXinit + pos.diff));
-        if ( pos.diff > 0 ) {
+        if (pos.diff > 0) {
             this.offsetX = xStep;
         } else {
             this.offsetX = 0;
@@ -65,7 +66,7 @@ export class WidgetWrapperComponent implements AfterViewInit {
 
     swipeY(pos: any) {
         // this.offsetY   = Math.min(this.offsetYmax, Math.max(0, this.offsetYinit - pos.diff));
-        if ( pos.diff < 0 ) {
+        if (pos.diff < 0) {
             this.offsetY = yStep;
         } else {
             this.offsetY = 0;

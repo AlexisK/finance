@@ -95,8 +95,12 @@
         }
 
         > .content {
-          margin-left: 40px;
+          margin-left: 10px;
           color: $grey-8;
+
+          &.interactive {
+            margin-left: 40px;
+          }
 
           .view {
             min-height: 40px;

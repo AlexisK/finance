@@ -23,23 +23,42 @@ export class ChartFormatService {
         return groupResult;
     }
 
-    formatChartTransactions(transactions: TransactionModel[]) {
+    private iterageSortedGroups(transactions: TransactionModel[], todo: Function) {
         let groupResult = this.getGroupResult(transactions);
 
-        return {
-            'labels' : Object.keys(groupResult).map((k: string) => this.db.storage['group'][k].title),
-            'series' : Object.keys(groupResult).map((k: string) => groupResult[k])
-        };
+        Object.keys(groupResult).sort((a: string, b: string) => {
+            return groupResult[b] - groupResult[a];
+        }).forEach((k: string) => todo(k, groupResult));
+    }
+
+    formatChartTransactions(transactions: TransactionModel[]) {
+        let labels: any[] = [];
+        let series: any[] = [];
+
+        this.iterageSortedGroups(transactions, (k: string, groupResult: any) => {
+            labels.push(this.db.storage['group'][k].title);
+            series.push(groupResult[k]);
+        });
+
+        return {labels, series};
     }
 
     formatDisplayTransaction(transactions: TransactionModel[]) {
-        let groupResult = this.getGroupResult(transactions);
+        let result: any[] = [];
 
-        return Object.keys(groupResult).map((k: string) => {
-            return {
+        this.iterageSortedGroups(transactions, (k: string, groupResult: any) => {
+            result.push({
                 group  : this.db.storage['group'][k],
                 amount : groupResult[k]
-            };
+            });
         });
+
+        return result;
+    }
+
+    getTotalPrice(transactions: TransactionModel[]) {
+        return -transactions.reduce((acc: number, transaction: TransactionModel) => {
+            return acc + Math.min(0, transaction['amount']);
+        }, 0);
     }
 }

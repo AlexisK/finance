@@ -4,17 +4,22 @@
     <div class="wrapper">
         <div class="slider" [class.animated]="true || !isSwiping"
              [style.transform]="'translate3d('+offsetX+'px, '+-offsetY+'px, 0)'">
+
             <div class="manipulator" [ico]="'blur_circular'"
+                 *ngIf="isInteractive"
                  [style.transform]="'translate3d(0, '+offsetY+'px, 0)'"
                  [class.alter]="isSwiping"
                  [swipe]="swipeRules"></div>
+
             <div class="submenu"
                  [style.transform]="'translate3d(0, '+offsetY+'px, 0)'">
                 <div class="icon edit" [ico]="'edit'"
                      *ngIf="model && item"
                      (click)="formsService.forms[model].edit(item)"></div>
+
             </div>
-            <div class="content">
+            <div class="content"
+                 [class.interactive]="isInteractive">
                 <ng-content></ng-content>
             </div>
         </div>

@@ -13,6 +13,7 @@
 
     <div *ngIf="ownTransactions.length">
         <finance-widget-wrapper *ngFor="let groupData of chartService.formatDisplayTransaction(ownTransactions)"
+                                [isInteractive]="false"
                                 [lines]="1" [model]="'group'" [item]="groupData.group"
                                 [icon]="groupData.group.icon" [iconColor]="groupData.group.color">
             <div class="view">
@@ -20,5 +21,12 @@
                 <p>{{groupData.group.title}}</p>
             </div>
         </finance-widget-wrapper>
+        <finance-widget-wrapper [isInteractive]="false">
+            <div class="view">
+                <p class="right">{{ chartService.getTotalPrice(ownTransactions) }} {{db.storage.currency[currency].title}}</p>
+                <p><strong>TOTAL:</strong></p>
+            </div>
+        </finance-widget-wrapper>
+
     </div>
 </div>

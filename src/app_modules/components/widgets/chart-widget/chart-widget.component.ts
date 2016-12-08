@@ -1,8 +1,7 @@
 import {Component, Input, OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
 
-import {TransactionModel, CurrencyModel} from 'models';
-import {ChartFormatService, DatabaseService} from 'services';
+import {TransactionModel} from 'models';
+import {ChartFormatService, DatabaseService, ClientStorageService} from 'services';
 
 @Component({
     selector    : 'finance-chart-widget',
@@ -11,10 +10,18 @@ import {ChartFormatService, DatabaseService} from 'services';
 })
 
 export class ChartWidgetComponent implements OnDestroy {
-    private subscription: Subscription;
-    private currency: string;
+    private _currency: string;
     @Input() title: string;
     @Input() transactions: TransactionModel[] = [];
+
+    get currency() {
+        return this._currency;
+    }
+
+    set currency(data: string) {
+        this.storage.setData('chart-currency', data);
+        this._currency = data;
+    }
 
     get ownTransactions() {
         if (this.currency) {
@@ -23,19 +30,13 @@ export class ChartWidgetComponent implements OnDestroy {
         return [];
     }
 
-    constructor(private db: DatabaseService,
+    constructor(private storage: ClientStorageService,
+                private db: DatabaseService,
                 private chartService: ChartFormatService) {
-        this.subscription = this.db.subjects.currency.subscribe((currency: CurrencyModel) => {
-            if (!this.currency) {
-                this.currency = currency.id;
-            }
-            this.subscription.unsubscribe();
-        });
+        this._currency = this.storage.getData('chart-currency');
+
     }
 
     ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
     }
 }

@@ -20,6 +20,7 @@ import {helpers} from 'utils';
 import {
     StateService,
     MEMStorageService,
+    ClientStorageService,
     DeactivateConditionService,
     FirebaseService,
     AuthService,
@@ -53,6 +54,7 @@ import * as components from 'components';
         // Services
         StateService,
         MEMStorageService,
+        ClientStorageService,
         DeactivateConditionService,
         FirebaseService,
         AuthService,

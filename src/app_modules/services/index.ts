@@ -1,4 +1,5 @@
 export * from './mem-storage.service';
+export * from './client-storage.service';
 export * from './deactivate-condition.service';
 export * from './firebase.service';
 export * from './state.service';

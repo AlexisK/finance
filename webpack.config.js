@@ -75,12 +75,12 @@ module.exports = function makeWebpackConfig() {
         preLoaders  : isTest ? [] : [
             {test : /\.ts$/, loader : 'tslint'},
             {
-                test: /.ts$/,
-                loader: 'string-replace-loader',
-                query: {
-                    search: 'moduleId: module.id,',
-                    replace: '',
-                    flags: 'g'
+                test   : /.ts$/,
+                loader : 'string-replace-loader',
+                query  : {
+                    search  : 'moduleId: module.id,',
+                    replace : '',
+                    flags   : 'g'
                 }
             }
         ],
@@ -134,17 +134,12 @@ module.exports = function makeWebpackConfig() {
      * List: http://webpack.github.io/docs/list-of-plugins.html
      */
     config.plugins = [
-        // Define env variables to help with builds
-        // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
         new webpack.DefinePlugin({
-            // Environment helpers
             'process.env' : {
                 ENV : JSON.stringify(ENV)
             }
         }),
 
-        // Copy assets from the public folder
-        // Reference: https://github.com/kevlened/copy-webpack-plugin
         new CopyWebpackPlugin([{
             from : root('src/public'),
             to   : root('build')
@@ -155,43 +150,36 @@ module.exports = function makeWebpackConfig() {
 
     if ( !isTest ) {
         config.plugins.push(
-            // Generate common chunks if necessary
-            // Reference: https://webpack.github.io/docs/code-splitting.html
-            // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
             new CommonsChunkPlugin({
                 name      : ['vendor', 'polyfills'],
                 minChunks : Infinity
             }),
-
-            // Inject script and link tags into html files
-            // Reference: https://github.com/ampedandwired/html-webpack-plugin
             new HtmlWebpackPlugin({
                 template       : './src/public/index.html',
                 chunksSortMode : 'dependency',
                 excludeChunks  : []
             }),
-
-            // Extract css files
-            // Reference: https://github.com/webpack/extract-text-webpack-plugin
-            // Disabled when in test mode or not in build mode
-            new ExtractTextPlugin('css/[name].[hash].css', {disable : !isProd})
+            new ExtractTextPlugin('css/[name].[hash].css', {disable : !isProd}),
+            new webpack.optimize.UglifyJsPlugin({
+                beautify : false, //prod
+                mangle   : {
+                    screw_ie8   : true,
+                    keep_fnames : true
+                }, //prod
+                compress : {
+                    screw_ie8 : true,
+                    warnings  : false
+                }, //prod
+                comments : false //prod
+            })
         );
     }
 
     // Add build specific plugins
     if ( isProd ) {
         config.plugins.push(
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-            // Only emit files when there are no errors
             new webpack.NoErrorsPlugin(),
-
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-            // Dedupe modules in the output
-            new webpack.optimize.DedupePlugin(),
-
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-            // Minify all javascript, switch loaders to minimizing mode
-            new webpack.optimize.UglifyJsPlugin()
+            new webpack.optimize.DedupePlugin()
         );
     }
 

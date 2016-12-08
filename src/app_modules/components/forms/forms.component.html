@@ -1,0 +1,84 @@
+<div class="finance-forms">
+    <finance-form-wrapper [model]="'group'" #formFinance>
+        <div *ngIf="formFinance.data">
+            <label>
+                <span>title:</span>
+                <input type="text" placeholder="Food" [(ngModel)]="formFinance.data.title"
+                       name="title"/>
+            </label>
+            <label>
+                <span>icon</span>
+                <span class="preview" [style.fill]="formFinance.data.color" [ico]="formFinance.data.icon"></span>
+                <select [(ngModel)]="formFinance.data.icon" name="icon">
+                    <option *ngFor="let icon of icons" [value]="icon">{{icon}}</option>
+                </select>
+            </label>
+            <label>
+                <span>color</span>
+                <span class="preview" [style.backgroundColor]="formFinance.data.color">42</span>
+                <input type="color" placeholder="#ffffff" [(ngModel)]="formFinance.data.color" name="color"/>
+            </label>
+            <label>
+                <span>Description</span>
+                <textarea placeholder="..." [(ngModel)]="formFinance.data.description"
+                          name="description"></textarea>
+            </label>
+        </div>
+    </finance-form-wrapper>
+
+    <finance-form-wrapper [model]="'transaction'" #formTransaction>
+        <div *ngIf="formTransaction.data">
+            <label class="w-2">
+                <span>Amount</span>
+                <input type="number" step="0.01" class="text-right" placeholder="0.00" [(ngModel)]="formTransaction.data.amount"
+                       name="amount" required/>
+            </label>
+            <label class="w-2">
+                <span>Curr.</span>
+                <select [(ngModel)]="formTransaction.data.currency" name="currency" required>
+                    <option *ngFor="let currency of db.currencies" [value]="currency.id">{{currency.title}}</option>
+                </select>
+            </label>
+            <label class="w-4">
+                <input type="checkbox" [(ngModel)]="formTransaction.data.isIncome" name="isIncome" />
+                <span>This is income</span>
+            </label>
+            <label class="w-4">
+                <span>Type</span>
+                <select [(ngModel)]="formTransaction.data.group" name="group" required>
+                    <option *ngFor="let group of db.groups" [value]="group.id">{{group.title}}</option>
+                </select>
+            </label>
+            <label>
+                <span>Title</span>
+                <input type="text" placeholder="Dinner" [(ngModel)]="formTransaction.data.title" name="title"/>
+            </label>
+            <label class="w-2">
+                <span>Date</span>
+                <input type="date" [(ngModel)]="formTransaction.data.date" name="date" required/>
+            </label>
+            <label class="w-2">
+                <span>Time</span>
+                <input type="time" [(ngModel)]="formTransaction.data.time" name="time" required/>
+            </label>
+            <label>
+                <span>Description</span>
+                <textarea placeholder="..." [(ngModel)]="formTransaction.data.description"
+                          name="description"></textarea>
+            </label>
+        </div>
+    </finance-form-wrapper>
+
+    <finance-form-wrapper [model]="'currency'" #formCurrency>
+        <div *ngIf="formCurrency.data">
+            <label>
+                <span>title</span>
+                <input type="text" placeholder="UAH" [(ngModel)]="formCurrency.data.title" name="title"/>
+            </label>
+            <label>
+                <span>Warning limit</span>
+                <input type="number" placeholder="-100.00" [(ngModel)]="formCurrency.data.warningLimit" name="warningLimit"/>
+            </label>
+        </div>
+    </finance-form-wrapper>
+</div>

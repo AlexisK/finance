@@ -9,6 +9,7 @@ export * from './report-monthly';
 export * from './chart';
 
 export * from './widgets';
+export * from './forms';
 
 export * from './form-wrapper';
 export * from './widget-wrapper';

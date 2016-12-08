@@ -1,5 +1,6 @@
 @import "colors";
 @import "button";
+@import "animation";
 
 @mixin form-pop() {
   padding: 20px;
@@ -58,23 +59,25 @@
     box-sizing: border-box;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: $grey-3;
+    background-color: $grey-1;
+    border: 0 solid transparent;
+    border-bottom: 1px solid $grey-5;
     color: #000;
-    border: none;
     font-size: 16px;
     line-height: 20px;
 
     &:active,
     &:focus {
-      background-color: $grey-1;
+      border-color: $grey-6;
     }
 
     &.text-right {
       text-align: right;
     }
 
-    &.invalid {
-      background-color: $red;
+    &.invalid, &.ng-invalid {
+      border-top: 1px solid transparent;
+      border-bottom: 2px solid $red;
     }
 
     &[type="checkbox"] {

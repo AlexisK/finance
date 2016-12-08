@@ -1,7 +1,6 @@
-import {Component, ViewEncapsulation, ViewChild} from '@angular/core';
-import {icons} from 'utils/icons';
+import {Component, ViewEncapsulation} from '@angular/core';
 
-import {DatabaseService, StateService} from 'services';
+import {StateService} from 'services';
 
 @Component({
     selector      : 'finance-app',
@@ -11,13 +10,6 @@ import {DatabaseService, StateService} from 'services';
 })
 
 export class AppComponent {
-    @ViewChild('formFinance') formFinance: any;
-    @ViewChild('formTransaction') formTransaction: any;
-    @ViewChild('formCurrency') formCurrency: any;
-
-    get icons() { return icons; }
-
-    constructor(private db: DatabaseService,
-                private state: StateService) {
+    constructor(private state: StateService) {
     }
 }

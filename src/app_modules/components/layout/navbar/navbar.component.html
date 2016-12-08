@@ -1,7 +1,5 @@
 <div class="finance-navbar">
     <div class="button icon left" [ico]="'menu_1'" (click)="state.isMainMenuOpen= !state.isMainMenuOpen"></div>
-    <div class="button icon right" [ico]="'tune'" (click)="state.isUserMenuOpen = !state.isUserMenuOpen"></div>
 </div>
 
-<finance-user-menu *ngIf="state.isAuthorized"></finance-user-menu>
 <finance-main-menu *ngIf="state.isAuthorized"></finance-main-menu>

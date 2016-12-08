@@ -1,9 +1,11 @@
-<div class="finance-main-menu" *ngIf="state.isMainMenuOpen">
-    <div class="closeArea" (click)="state.isMainMenuOpen = !state.isMainMenuOpen"></div>
-    <div class="wrapper">
+<div class="finance-main-menu">
+    <div class="closeArea" *ngIf="isOpened" (click)="isOpened = !isOpened"></div>
+    <div class="wrapper"
+         [class.visible]="isOpened">
 
         <div class="header">
-            <div class="button icon left" [ico]="'x'" (click)="state.isMainMenuOpen = !state.isMainMenuOpen"></div>
+            <div class="button icon left" [ico]="'x'" (click)="isOpened = false"></div>
+            <p>{{state.user.email}}</p>
         </div>
 
         <div class="container">
@@ -17,17 +19,17 @@
 
             <div class="navigation">
                 <nav>
-                    <a [routerLink]="'/'" (click)="state.isMainMenuOpen = false">Dashboard</a>
-                    <a [routerLink]="'/daily/today'" (click)="state.isMainMenuOpen = false">Daily</a>
-                    <a [routerLink]="'/monthly/today'" (click)="state.isMainMenuOpen = false">Monthly</a>
+                    <a [routerLink]="'/'" (click)="isOpened = false">Dashboard</a>
+                    <a [routerLink]="'/daily/today'" (click)="isOpened = false">Daily</a>
+                    <a [routerLink]="'/monthly/today'" (click)="isOpened = false">Monthly</a>
                     <a href="#">Year</a>
-                    <a [routerLink]="'/groups/'" (click)="state.isMainMenuOpen = false">Groups</a>
-                    <a [routerLink]="'/currencies/'" (click)="state.isMainMenuOpen = false">Currencies</a>
+                    <a [routerLink]="'/groups/'" (click)="isOpened = false">Groups</a>
+                    <a [routerLink]="'/currencies/'" (click)="isOpened = false">Currencies</a>
                 </nav>
             </div>
 
             <div class="menus">
-                <div class="asLink">Button example</div>
+                <div class="asLink" (click)="auth.logout($event)">Logout</div>
             </div>
 
         </div>

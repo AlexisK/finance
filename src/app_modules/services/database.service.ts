@@ -1,7 +1,7 @@
 import {Injectable, NgZone} from '@angular/core';
 
 import {FirebaseService, firebase} from 'services';
-import {CurrencyModel, GroupModel, TransactionModel} from 'models';
+import {CurrencyModel, GroupModel, TransactionModel, ProfileModel} from 'models';
 import {Subject} from 'rxjs/Subject';
 
 
@@ -29,6 +29,7 @@ export class DatabaseService {
     public subjects: any            = {
         currency    : new Subject(),
         transaction : new Subject(),
+        profile     : new Subject(),
         group       : new Subject()
     };
 
@@ -97,6 +98,7 @@ export class DatabaseService {
     subscribeFirebase() {
         this.subscribeModel('currency', CurrencyModel);
         this.subscribeModel('group', GroupModel);
+        this.subscribeModel('profile', ProfileModel);
         this.subscribeModel('transaction', TransactionModel, {
             onRetrieve : (obj: any, model: string) => {
                 let key = getStrippedKey(obj.timestamp);

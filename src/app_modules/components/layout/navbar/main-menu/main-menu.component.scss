@@ -63,14 +63,18 @@
           padding: 1px 0 0 1px;
 
           & > div {
-            display: inline-block;
+            //display: inline-block;
             margin: 0 1px 1px 0;
-            padding: 20px;
-            background-color: $grey-9;
-            color: $grey-1;
+            padding: 10px 20px;
+            background-color: $grey-1;
+            color: $grey-9;
 
             & > * {
               display: inline-block;
+            }
+
+            > div {
+              float: right;
             }
           }
         }

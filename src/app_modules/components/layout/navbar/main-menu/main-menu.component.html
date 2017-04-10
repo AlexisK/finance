@@ -13,7 +13,7 @@
             <div class="currencies">
                 <div *ngFor="let currency of database.calculatedCurrencies" class="coffer">
                     <strong>{{currency.title}}</strong>
-                    <div>{{currency.amount}}</div>
+                    <div>{{currency.amount | number:'1.2-2'}}</div>
                 </div>
             </div>
 

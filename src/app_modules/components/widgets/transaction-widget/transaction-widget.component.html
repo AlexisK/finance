@@ -15,7 +15,7 @@
         <div class="view">
             <p class="right">{{db.storage.group[transaction.group].title}}</p>
             <div class="date">
-                <span>{{transaction.timestamp | financeTime}}</span>
+                <span>{{db.storage.profile[transaction.author].email}}</span>
                 <small class="hidden">{{transaction.timestamp | financeDate}}</small>
             </div>
         </div>
